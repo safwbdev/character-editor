@@ -5,6 +5,9 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProject from "./components/projects/CreateProject";
+import CreateSkill from "./components/skills/CreateSkill";
+import CreateEducation from "./components/education/CreateEducation";
+import CreateWork from "./components/work/CreateWork";
 
 class App extends Component {
   render() {
@@ -15,6 +18,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Dashboard} />
             <Route exact path="/create-project" component={CreateProject} />
+            <Route exact path="/create-skill" component={CreateSkill} />
+            <Route exact path="/create-education" component={CreateEducation} />
+            <Route exact path="/create-work" component={CreateWork} />
           </Switch>
         </div>
       </BrowserRouter>
