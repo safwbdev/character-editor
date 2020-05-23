@@ -1,13 +1,14 @@
 import React from "react";
 import ProjectSummary from "./ProjectSummary";
+import { Grid } from "@material-ui/core";
 const ProjectList = ({ projects }) => {
   return (
-    <div className="project-list section">
+    <Grid container spacing={3}>
       {projects &&
         projects.map((project) => {
           return <ProjectSummary project={project} key={project.id} />;
         })}
-    </div>
+    </Grid>
   );
 };
 

@@ -3,6 +3,9 @@ import { createProject } from "../../store/actions/projectActions";
 import projectReducer from "../../store/reducers/projectReducer";
 import { createStore } from "redux";
 import { connect } from "react-redux";
+import { Container, Grid, Button } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 
 class CreateProject extends Component {
   state = {
@@ -16,31 +19,49 @@ class CreateProject extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
     this.props.createProject(this.state);
   };
   render() {
     return (
-      <div className="container">
+      <Container maxWidth="lg">
         <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Create a New Project</h5>
-          <div className="input-field">
-            <input type="text" id="title" onChange={this.handleChange} />
-            <label htmlFor="title">Project Title</label>
-          </div>
-          <div className="input-field">
-            <textarea
-              id="content"
-              className="materialize-textarea"
-              onChange={this.handleChange}
-            ></textarea>
-            <label htmlFor="content">Project Content</label>
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1">Create</button>
-          </div>
+          <Grid container spacing={3}>
+            <Grid xs={12} />
+            <Grid item xs={12}>
+              <Typography variant="h5" component="h5">
+                Add New Project
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="title"
+                label="Project Title"
+                variant="outlined"
+                onChange={this.handleChange}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="content"
+                label="Content"
+                multiline
+                rows={4}
+                variant="outlined"
+                onChange={this.handleChange}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
         </form>
-      </div>
+      </Container>
     );
   }
 }

@@ -1,17 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Links from "./Links";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import Container from "@material-ui/core/Container";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 const Navbar = () => {
+  const classes = useStyles();
   return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to="/" className="brand-logo">
-          Character Editor
-        </Link>
-        <Links />
-      </div>
-    </nav>
+    <AppBar position="static">
+      <Container maxWidth="lg">
+        <Toolbar>
+          <Link to="/" className={classes.title}>
+            Character Editor
+          </Link>
+          <Links />
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 };
 
