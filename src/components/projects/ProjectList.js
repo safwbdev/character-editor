@@ -1,15 +1,32 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 import ProjectSummary from "./ProjectSummary";
-import { Grid } from "@material-ui/core";
-const ProjectList = ({ projects }) => {
-  return (
-    <Grid container spacing={3}>
-      {projects &&
-        projects.map((project) => {
-          return <ProjectSummary project={project} key={project.id} />;
-        })}
-    </Grid>
-  );
-};
+import List from "@material-ui/core/List";
 
-export default ProjectList;
+class SkillList extends Component {
+  render() {
+    const { projects } = this.props;
+    console.log("projects");
+    console.log(projects);
+    return (
+      <List>
+        {projects &&
+          projects.map((project) => {
+            return <ProjectSummary project={project} />;
+          })}
+      </List>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    projects: state.firestore.ordered.projects,
+  };
+};
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "projects" }])
+)(SkillList);

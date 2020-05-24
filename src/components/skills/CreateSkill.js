@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createSkill } from "../../store/actions/skillActions";
 import skillReducer from "../../store/reducers/skillReducer";
 import { createStore } from "redux";
@@ -8,8 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { useForm } from "react-hook-form";
@@ -35,32 +33,14 @@ const CreateSkill = (props) => {
   const handleIcon = (e) => {
     setSkillIcon(e.target.value);
   };
-  //   const onSubmit = (data) => console.log(data);
-  console.log("JSON");
-  //   console.log(fontawesome);
   useEffect(() => {});
 
   const onSubmit = (data, e) => {
     e.preventDefault();
     console.log(data);
-    // props.createSkill(data);
+    props.createSkill(data);
     // props.history.push("/");
   };
-  //   state = {
-  //     title: "",
-  //     content: "",
-  //   };
-  //   handleChange = (e) => {
-  //     this.setState({
-  //       [e.target.id]: e.target.value,
-  //     });
-  //   };
-  //   handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     // console.log(this.state);
-  //     this.props.createSkill(this.state);
-  //   };
-  //   render() {
   return (
     <Container maxWidth="lg">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -165,28 +145,7 @@ const CreateSkill = (props) => {
         </Grid>
       </form>
     </Container>
-    //   <div className="container">
-    //     <form className="white" onSubmit={this.handleSubmit}>
-    //       <h5 className="grey-text text-darken-3">Create a New Skill</h5>
-    //       <div className="input-field">
-    //         <input type="text" id="title" onChange={this.handleChange} />
-    //         <label htmlFor="title">Skill Name</label>
-    //       </div>
-    //       <div className="input-field">
-    //         <textarea
-    //           id="content"
-    //           className="materialize-textarea"
-    //           onChange={this.handleChange}
-    //         ></textarea>
-    //         <label htmlFor="content">Project Content</label>
-    //       </div>
-    //       <div className="input-field">
-    //         <button className="btn pink lighten-1">Create</button>
-    //       </div>
-    //     </form>
-    //   </div>
   );
-  //   }
 };
 
 const mapDispatchToProps = (dispatch) => {

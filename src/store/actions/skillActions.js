@@ -2,15 +2,14 @@ export const createSkill = (skill) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to db
     const firestore = getFirestore();
+    console.log("CREATE SKILL");
     firestore
       .collection("skills")
       .add({
-        // ...skill,
-        name: "new skill",
-        type: "new type",
-        icon: ["fab", "icon"],
-        // author: "Stefaan",
-        // createdAt: new Date(),
+        ...skill,
+        // name: "new skill",
+        // type: "new type",
+        // icon: ["fab", "icon"],
       })
       .then(() => {
         dispatch({ type: "CREATE_SKILL", skill });
