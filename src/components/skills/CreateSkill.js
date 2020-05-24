@@ -13,6 +13,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { useForm } from "react-hook-form";
+import fontawesome from "./fontawsome5.json";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -27,11 +28,16 @@ const useStyles = makeStyles((theme) => ({
 const CreateSkill = (props) => {
   const { register, handleSubmit, errors } = useForm();
   const [skillType, setSkillType] = useState("");
+  const [skillIcon, setSkillIcon] = useState("");
   const handleChange = (e) => {
     setSkillType(e.target.value);
   };
+  const handleIcon = (e) => {
+    setSkillIcon(e.target.value);
+  };
   //   const onSubmit = (data) => console.log(data);
-
+  console.log("JSON");
+  //   console.log(fontawesome);
   useEffect(() => {});
 
   const onSubmit = (data, e) => {
@@ -64,6 +70,7 @@ const CreateSkill = (props) => {
             <Typography variant="h5" component="h5">
               Add New Skill
             </Typography>
+            <i class="fas fa-briefcase-medical"></i>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -114,37 +121,41 @@ const CreateSkill = (props) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={10}>
             <FormControl variant="outlined" fullWidth>
               <InputLabel htmlFor="oylined-age-native-simple">
                 Select Icon
               </InputLabel>
               <Select
                 native
-                onChange={handleChange}
+                onChange={handleIcon}
                 errors={!!errors.type}
                 inputRef={register({
                   required: true,
                 })}
-                label="Skill Type"
+                label="Skill Icon"
                 inputProps={{
-                  name: "type",
-                  id: "type",
-                  type: "type",
+                  name: "icon",
+                  id: "icon",
+                  type: "icon",
                 }}
               >
                 <option aria-label="None" value="" />
-                <option value="essential">Essential</option>
-                <option value="technical">Technical</option>
-                <option value="framework">Framework</option>
-                <option value="library">Library</option>
-                <option value="database">Database</option>
-                <option value="cms">CMS</option>
-                <option value="os">OS</option>
-                <option value="tools">Tools</option>
-                <option value="design">Design</option>
+                {fontawesome.map((icon) => {
+                  let val = icon;
+                  let val1 = val.replace("fas ", "");
+                  let val2 = val1.replace("fab ", "");
+                  let val3 = val2.replace("far ", "");
+                  let text = val3.replace("fa-", "");
+                  return <option value={icon}>{text}</option>;
+                })}
               </Select>
             </FormControl>
+          </Grid>
+          <Grid item xs={2}>
+            <Typography variant="h3" component="h3">
+              <i class={skillIcon}></i>
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained">
