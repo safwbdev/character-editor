@@ -7,9 +7,6 @@ export const createSkill = (skill) => {
       .collection("skills")
       .add({
         ...skill,
-        // name: "new skill",
-        // type: "new type",
-        // icon: ["fab", "icon"],
       })
       .then(() => {
         dispatch({ type: "CREATE_SKILL", skill });

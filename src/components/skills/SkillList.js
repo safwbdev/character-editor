@@ -8,9 +8,7 @@ import List from "@material-ui/core/List";
 class SkillList extends Component {
   render() {
     const { skills } = this.props;
-    console.log("QWERTY");
-    console.log(this.props);
-    console.log(skills);
+
     return (
       <List>
         {skills &&

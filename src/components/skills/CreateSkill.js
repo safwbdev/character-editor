@@ -50,7 +50,6 @@ const CreateSkill = (props) => {
             <Typography variant="h5" component="h5">
               Add New Skill
             </Typography>
-            <i class="fas fa-briefcase-medical"></i>
           </Grid>
           <Grid item xs={12}>
             <TextField

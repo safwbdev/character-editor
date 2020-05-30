@@ -9,6 +9,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import FolderIcon from "@material-ui/icons/Folder";
 
+const deleteRow = (id) => {
+  console.log("DELETE PRESSED! " + id);
+};
 const ProjectSummary = ({ project }) => {
   return (
     <ListItem>
@@ -23,7 +26,11 @@ const ProjectSummary = ({ project }) => {
         <IconButton edge="end" aria-label="delete">
           <EditIcon />
         </IconButton>
-        <IconButton edge="end" aria-label="delete">
+        <IconButton
+          edge="end"
+          aria-label="delete"
+          onClick={() => deleteRow(project.id)}
+        >
           <DeleteIcon />
         </IconButton>
       </ListItemSecondaryAction>

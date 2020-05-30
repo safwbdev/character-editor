@@ -7,7 +7,11 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import { Link } from "react-router-dom";
 
+const deleteRow = (id) => {
+  console.log("DELETE PRESSED! " + id);
+};
 const ProjectSummary = ({ skill }) => {
   return (
     <ListItem>
@@ -19,10 +23,16 @@ const ProjectSummary = ({ skill }) => {
       </ListItemAvatar>
       <ListItemText primary={skill.name} secondary={skill.type} />
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
-          <EditIcon />
-        </IconButton>
-        <IconButton edge="end" aria-label="delete">
+        <Link to={"/edit-skill/" + skill.id}>
+          <IconButton edge="end" aria-label="delete">
+            <EditIcon />
+          </IconButton>
+        </Link>
+        <IconButton
+          edge="end"
+          aria-label="delete"
+          onClick={() => deleteRow(skill.id)}
+        >
           <DeleteIcon />
         </IconButton>
       </ListItemSecondaryAction>
