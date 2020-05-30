@@ -1,6 +1,6 @@
 // import React, { useEffect, useState } from "react";
 import React, { Component } from "react";
-import { createSkill } from "../../store/actions/skillActions";
+import { updateSkill } from "../../store/actions/skillActions";
 import skillReducer from "../../store/reducers/skillReducer";
 import { createStore } from "redux";
 import { connect } from "react-redux";
@@ -15,35 +15,6 @@ import { useForm } from "react-hook-form";
 import fontawesome from "./fontawsome5.json";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-// const EditSkill = (props) => {
-//   const { register, handleSubmit, errors } = useForm();
-//   const [skillType, setSkillType] = useState("");
-//   const [skillIcon, setSkillIcon] = useState("");
-//   const handleChange = (e) => {
-//     setSkillType(e.target.value);
-//   };
-//   const handleIcon = (e) => {
-//     setSkillIcon(e.target.value);
-//   };
-//   useEffect(() => {});
-
-//   const onSubmit = (data, e) => {
-//     e.preventDefault();
-//     console.log(data);
-//     props.createSkill(data);
-//     // props.history.push("/");
-//   };
 
 class EditSkill extends Component {
   constructor() {
@@ -62,13 +33,9 @@ class EditSkill extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.type === "service") {
-      console.log("SERVICE");
-      this.setState({ condition: null });
-    }
-    console.log(this.state);
-    // this.props.updateProduct(this.state);
-    // this.props.history.push("/manager");
+    const id = this.props.match.params.id;
+    this.props.updateSkill(id, this.state);
+    this.props.history.push("/");
   };
   componentWillReceiveProps(skill) {
     const data = skill.skill;
@@ -80,19 +47,17 @@ class EditSkill extends Component {
         icon: data.icon,
       });
       console.log("Get Data");
-      console.log(data);
     }
   }
   render() {
     return (
       <Container maxWidth="lg">
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
         <form onSubmit={this.handleSubmit} autoComplete="off">
           <Grid container spacing={3}>
             <Grid xs={12} />
             <Grid item xs={12}>
               <Typography variant="h5" component="h5">
-                Add New Skill
+                Edit Skill
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -105,21 +70,6 @@ class EditSkill extends Component {
                 fullWidth
                 required
               />
-              {/* <TextField
-                id="name"
-                type="name"
-                name="name"
-                autoComplete="name"
-                label="Skill Name"
-                variant="outlined"
-                // errors={!!errors.name}
-                // inputRef={register({
-                //   required: true,
-                // })}
-                //   onChange={handleChange}
-                required
-                fullWidth
-              /> */}
             </Grid>
             <Grid item xs={12}>
               <FormControl variant="outlined" fullWidth>
@@ -128,28 +78,25 @@ class EditSkill extends Component {
                 </InputLabel>
                 <Select
                   native
+                  name="type"
+                  id="type"
+                  type="type"
                   onChange={this.handleChange}
-                  //   errors={!!errors.type}
-                  //   inputRef={register({
-                  //     required: true,
-                  //   })}
                   label="Skill Type"
-                  //   inputProps={{
-                  //     name: "type",
-                  //     id: "type",
-                  //     type: "type",
-                  //   }}
                 >
                   <option aria-label="None" value="" />
-                  <option value="essential">Essential</option>
-                  <option value="technical">Technical</option>
-                  <option value="framework">Framework</option>
-                  <option value="library">Library</option>
-                  <option value="database">Database</option>
-                  <option value="cms">CMS</option>
-                  <option value="os">OS</option>
-                  <option value="tools">Tools</option>
-                  <option value="design">Design</option>
+                  {skillTypes &&
+                    skillTypes.map((data) => {
+                      if (data.value === this.state.type) {
+                        return (
+                          <option value={data.value} selected>
+                            {data.label}
+                          </option>
+                        );
+                      } else {
+                        return <option value={data.value}>{data.label}</option>;
+                      }
+                    })}
                 </Select>
               </FormControl>
             </Grid>
@@ -160,17 +107,11 @@ class EditSkill extends Component {
                 </InputLabel>
                 <Select
                   native
-                  //   onChange={handleIcon}
-                  //   errors={!!errors.type}
-                  //   inputRef={register({
-                  //     required: true,
-                  //   })}
+                  name="icon"
+                  id="icon"
+                  type="icon"
+                  onChange={this.handleChange}
                   label="Skill Icon"
-                  //   inputProps={{
-                  //     name: "icon",
-                  //     id: "icon",
-                  //     type: "icon",
-                  //   }}
                 >
                   <option aria-label="None" value="" />
                   {fontawesome.map((icon) => {
@@ -179,14 +120,23 @@ class EditSkill extends Component {
                     let val2 = val1.replace("fab ", "");
                     let val3 = val2.replace("far ", "");
                     let text = val3.replace("fa-", "");
-                    return <option value={icon}>{text}</option>;
+
+                    if (icon === this.state.icon) {
+                      return (
+                        <option value={icon} selected>
+                          {text}
+                        </option>
+                      );
+                    } else {
+                      return <option value={icon}>{text}</option>;
+                    }
                   })}
                 </Select>
               </FormControl>
             </Grid>
             <Grid item xs={2}>
               <Typography variant="h3" component="h3">
-                {/* <i class={skillIcon}></i> */}
+                <i class={this.state.icon}></i>
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -201,20 +151,29 @@ class EditSkill extends Component {
   }
 }
 
+const skillTypes = [
+  { value: "essential", label: "Essential" },
+  { value: "technical", label: "Technical" },
+  { value: "framework", label: "Framework" },
+  { value: "library", label: "Library" },
+  { value: "database", label: "Database" },
+  { value: "cms", label: "CMS" },
+  { value: "os", label: "OS" },
+  { value: "tools", label: "Tools" },
+  { value: "design", label: "Design" },
+];
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    createSkill: (skill) => dispatch(createSkill(skill)),
+    updateSkill: (id, skill) => dispatch(updateSkill(id, skill)),
   };
 };
 const mapStateToProps = (state, ownProps) => {
   console.log("MAPPING");
   const id = ownProps.match.params.id;
 
-  console.log(id);
   const skills = state.firestore.data.skills;
   const skill = skills ? skills[id] : null;
-  //   console.log(skills.id);
-  console.log(skills[id]);
   return {
     skills: skills,
     skill: skill,
