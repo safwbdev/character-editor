@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { createEducation } from "../../store/actions/eduActions";
-import eduReducer from "../../store/reducers/eduReducer";
-import { createStore } from "redux";
 import { connect } from "react-redux";
 
 class CreateEducation extends Component {

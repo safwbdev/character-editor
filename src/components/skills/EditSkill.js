@@ -1,17 +1,12 @@
-// import React, { useEffect, useState } from "react";
 import React, { Component } from "react";
 import { updateSkill } from "../../store/actions/skillActions";
-import skillReducer from "../../store/reducers/skillReducer";
-import { createStore } from "redux";
 import { connect } from "react-redux";
 import { Container, Grid, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { useForm } from "react-hook-form";
 import fontawesome from "./fontawsome5.json";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
@@ -169,9 +164,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 const mapStateToProps = (state, ownProps) => {
-  console.log("MAPPING");
   const id = ownProps.match.params.id;
-
   const skills = state.firestore.data.skills;
   const skill = skills ? skills[id] : null;
   return {

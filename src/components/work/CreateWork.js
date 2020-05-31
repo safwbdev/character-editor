@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { createWork } from "../../store/actions/workActions";
-import workReducer from "../../store/reducers/workReducer";
-import { createStore } from "redux";
 import { connect } from "react-redux";
 
 class CreateWork extends Component {
