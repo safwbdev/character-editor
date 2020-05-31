@@ -24,3 +24,21 @@ export const createWork = (work) => {
       });
   };
 };
+export const deleteWork = (id) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to db
+    const firestore = getFirestore();
+    console.log("DELETE WORK");
+    console.log(id);
+    firestore
+      .collection("work")
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({ type: "DELETE_WORK", id });
+      })
+      .catch((err) => {
+        dispatch({ type: "DELETE_WORK_ERROR", err });
+      });
+  };
+};

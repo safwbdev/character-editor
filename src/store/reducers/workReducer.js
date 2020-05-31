@@ -14,6 +14,12 @@ const projectReducer = (state = initState, action) => {
     case "CREATE_WORK_ERROR":
       console.log("create work Error", action.err);
       return state;
+    case "DELETE_WORK":
+      console.log("create work", action.work);
+      return state;
+    case "DELETE_WORK_ERROR":
+      console.log("create work Error", action.err);
+      return state;
     default:
       return state;
   }

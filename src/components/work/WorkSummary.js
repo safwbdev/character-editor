@@ -7,32 +7,39 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import FolderIcon from "@material-ui/icons/Folder";
-import { deleteProject } from "../../store/actions/projectActions";
+import { Link } from "react-router-dom";
+import { deleteWork } from "../../store/actions/workActions";
 import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-const ProjectSummary = (props) => {
-  const { project } = props;
+const WorkSummary = (props) => {
+  const { work } = props;
+
+  console.log(work);
   const deleteRow = (id) => {
     console.log("DELETE PRESSED! " + id);
-    props.deleteProject(id);
+    props.deleteWork(id);
   };
   return (
     <ListItem>
       <ListItemAvatar>
-        <Avatar src={project.photoUrl} variant="square" alt="" />
+        <Avatar>
+          {/* <FolderIcon /> */}
+          {/* <i class={skill.icon}></i> */}W
+        </Avatar>
       </ListItemAvatar>
-      <ListItemText primary={project.title} />
+      <ListItemText primary={work.name} secondary={work.role} />
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
-          <EditIcon />
-        </IconButton>
+        <Link to={"/edit-work/" + work.id}>
+          <IconButton edge="end" aria-label="delete">
+            <EditIcon />
+          </IconButton>
+        </Link>
         <IconButton
           edge="end"
           aria-label="delete"
-          onClick={() => deleteRow(project.id)}
+          onClick={() => deleteRow(work.id)}
         >
           <DeleteIcon />
         </IconButton>
@@ -45,17 +52,17 @@ const ProjectSummary = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteProject: (id) => dispatch(deleteProject(id)),
+    deleteWork: (id) => dispatch(deleteWork(id)),
   };
 };
 // export default connect(null, mapDispatchToProps)(CreateProject);
 
 const mapStateToProps = (state) => {
   return {
-    projects: state.firestore.ordered.projects,
+    work: state.firestore.ordered.work,
   };
 };
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: "project" }])
-)(ProjectSummary);
+  firestoreConnect([{ collection: "work" }])
+)(WorkSummary);
