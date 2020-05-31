@@ -39,7 +39,7 @@ const CreateSkill = (props) => {
     e.preventDefault();
     console.log(data);
     props.createSkill(data);
-    // props.history.push("/");
+    props.history.push("/");
   };
   return (
     <Container maxWidth="lg">

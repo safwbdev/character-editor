@@ -14,6 +14,12 @@ const skillReducer = (state = initState, action) => {
     case "UPDATE_SKILL_ERROR":
       console.log("update skill Error", action.err);
       return state;
+    case "DELETE_SKILL":
+      console.log("delete skill", action.id);
+      return state;
+    case "DELETE_SKILL_ERROR":
+      console.log("delete skill Error", action.err);
+      return state;
     default:
       return state;
   }

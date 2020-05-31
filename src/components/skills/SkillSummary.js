@@ -8,11 +8,17 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
+import { deleteSkill } from "../../store/actions/skillActions";
+import { firestoreConnect } from "react-redux-firebase";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-const deleteRow = (id) => {
-  console.log("DELETE PRESSED! " + id);
-};
-const ProjectSummary = ({ skill }) => {
+const SkillSummary = (props) => {
+  const { skill } = props;
+  const deleteRow = (id) => {
+    console.log("DELETE PRESSED! " + id);
+    props.deleteSkill(id);
+  };
   return (
     <ListItem>
       <ListItemAvatar>
@@ -40,4 +46,21 @@ const ProjectSummary = ({ skill }) => {
   );
 };
 
-export default ProjectSummary;
+// export default ProjectSummary;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteSkill: (id) => dispatch(deleteSkill(id)),
+  };
+};
+// export default connect(null, mapDispatchToProps)(CreateProject);
+
+const mapStateToProps = (state) => {
+  return {
+    skills: state.firestore.ordered.skills,
+  };
+};
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([{ collection: "skills" }])
+)(SkillSummary);

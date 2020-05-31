@@ -40,3 +40,22 @@ export const updateSkill = (id, skill) => {
       });
   };
 };
+
+export const deleteSkill = (id) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to db
+    const firestore = getFirestore();
+    console.log("DELETE SKILL");
+    console.log(id);
+    firestore
+      .collection("skills")
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({ type: "DELETE_SKILL", id });
+      })
+      .catch((err) => {
+        dispatch({ type: "DELETE_SKILL_ERROR", err });
+      });
+  };
+};
