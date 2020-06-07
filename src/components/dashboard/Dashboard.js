@@ -10,6 +10,7 @@ import { Grid } from "@material-ui/core";
 import SkillList from "../skills/SkillList";
 import WorkList from "../work/WorkList";
 import ProjectList from "../projects/ProjectList";
+import EducationList from "../education/EducationList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,7 +60,7 @@ export default function SimpleTabs() {
               <Tab label="Projects" />
               <Tab label="Skills" />
               <Tab label="Work" />
-              <Tab label="Education" disabled />
+              <Tab label="Education" />
             </Tabs>
           </Paper>
           <TabPanel value={value} index={0}>
@@ -70,6 +71,9 @@ export default function SimpleTabs() {
           </TabPanel>
           <TabPanel value={value} index={2}>
             <WorkList />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <EducationList />
           </TabPanel>
         </Grid>
       </Grid>

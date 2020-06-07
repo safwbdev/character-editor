@@ -16,20 +16,15 @@ import { compose } from "redux";
 const WorkSummary = (props) => {
   const { work } = props;
 
-  console.log(work);
   const deleteRow = (id) => {
-    console.log("DELETE PRESSED! " + id);
     props.deleteWork(id);
   };
   return (
     <ListItem>
       <ListItemAvatar>
-        <Avatar>
-          {/* <FolderIcon /> */}
-          {/* <i class={skill.icon}></i> */}W
-        </Avatar>
+        <Avatar src={work.photoUrl} variant="square" alt="" />
       </ListItemAvatar>
-      <ListItemText primary={work.name} secondary={work.role} />
+      <ListItemText primary={work.name} />
       <ListItemSecondaryAction>
         <Link to={"/edit-work/" + work.id}>
           <IconButton edge="end" aria-label="delete">
@@ -48,21 +43,13 @@ const WorkSummary = (props) => {
   );
 };
 
-// export default ProjectSummary;
-
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteWork: (id) => dispatch(deleteWork(id)),
   };
 };
-// export default connect(null, mapDispatchToProps)(CreateProject);
 
-const mapStateToProps = (state) => {
-  return {
-    work: state.firestore.ordered.work,
-  };
-};
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(null, mapDispatchToProps),
   firestoreConnect([{ collection: "work" }])
 )(WorkSummary);

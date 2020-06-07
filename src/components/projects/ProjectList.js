@@ -8,8 +8,7 @@ import List from "@material-ui/core/List";
 class SkillList extends Component {
   render() {
     const { projects } = this.props;
-    console.log("projects");
-    console.log(projects);
+
     return (
       <List>
         {projects &&

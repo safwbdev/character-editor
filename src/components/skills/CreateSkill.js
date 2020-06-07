@@ -1,32 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { createSkill } from "../../store/actions/skillActions";
-import skillReducer from "../../store/reducers/skillReducer";
-import { createStore } from "redux";
 import { connect } from "react-redux";
 import { Container, Grid, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { useForm } from "react-hook-form";
 import fontawesome from "./fontawsome5.json";
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
 const CreateSkill = (props) => {
   const { register, handleSubmit, errors } = useForm();
   const [skillType, setSkillType] = useState("");
   const [skillIcon, setSkillIcon] = useState("");
+
   const handleChange = (e) => {
     setSkillType(e.target.value);
   };
@@ -63,7 +51,6 @@ const CreateSkill = (props) => {
               inputRef={register({
                 required: true,
               })}
-              //   onChange={handleChange}
               required
               fullWidth
             />

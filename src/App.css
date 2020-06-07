@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,46 @@
   to {
     transform: rotate(360deg);
   }
+} */
+.MuiChip-root {
+  margin: 0.5em;
+}
+.skill-box {
+  text-align: center;
+  padding: 1.5em 0;
+}
+.skill-box h5 {
+  margin-bottom: 0.7em;
+}
+.essential {
+}
+.technical {
+  background-color: #c5cae9 !important;
+}
+.framework {
+  background-color: #90caf9 !important;
+}
+.library {
+  background-color: #cddc39 !important;
+}
+.database {
+  background-color: #ffeb3b !important;
+}
+.cms {
+  background-color: #ffb74d !important;
+}
+.os {
+  background-color: #e57373 !important;
+}
+.tools {
+  background-color: #e1bee7 !important;
+}
+.design {
+  background-color: #ce93d8 !important;
+}
+
+header a,
+header a button span {
+  color: #ffffff;
+  text-decoration: none;
 }

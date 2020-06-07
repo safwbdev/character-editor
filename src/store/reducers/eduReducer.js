@@ -8,6 +8,12 @@ const eduReducer = (state = initState, action) => {
     case "CREATE_EDUCATION_ERROR":
       console.log("create education Error", action.err);
       return state;
+    case "DELETE_EDUCATION":
+      console.log("create education", action.edu);
+      return state;
+    case "DELETE_EDUCATION_ERROR":
+      console.log("create education Error", action.err);
+      return state;
     default:
       return state;
   }

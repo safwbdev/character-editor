@@ -1,9 +1,6 @@
-export const createProject = (project, url, skillArray) => {
+export const createProject = (project, url, photoID, skillArray) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     console.log("PROJECT CREATE");
-    console.log(project);
-    console.log(url);
-    console.log(skillArray);
     // make async call to db
     const firestore = getFirestore();
     firestore
@@ -14,6 +11,7 @@ export const createProject = (project, url, skillArray) => {
         // desc: project.desc,
         stacks: skillArray,
         photoUrl: url,
+        photoID: photoID,
         createdAt: new Date(),
       })
       .then(() => {

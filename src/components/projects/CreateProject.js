@@ -23,30 +23,20 @@ const CreateProject = (props) => {
   const [progress, setProgress] = useState(0);
 
   // form stuff
-  const { register, handleSubmit, errors, setValue } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [skillType, setSkillType] = useState([]);
   const [skillArray, setSkillArray] = useState([]);
-  const [skillIcon, setSkillIcon] = useState("");
-  let skillCollection = [];
 
-  console.log(skillCollection);
-  // console.log("lolo");
-  // const handleChange = (e) => {
-  //   setSkillType(e.target.value);
-  // };
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
     }
   };
   const handleSkillTYpe = (e) => {
-    // console.log("handle skill type");
-    // console.log(e);
     setSkillArray(e);
   };
 
   useEffect(() => {
-    // register({ name: "stacks" });
     if (props.skills) {
       setSkillType(props.skills);
     }
@@ -74,7 +64,6 @@ const CreateProject = (props) => {
         noError = true;
         break;
       default:
-        // type = ".jpeg";
         noError = false;
     }
 
@@ -117,12 +106,12 @@ const CreateProject = (props) => {
     e.preventDefault();
     console.log("SUBMIT");
     console.log(data);
-    // if (url) {
-    //   props.createProject(data, url, skillArray);
-    //   props.history.push("/");
-    // } else {
-    //   alert("Please Upload an image");
-    // }
+    if (url) {
+      props.createProject(data, url, photoID, skillArray);
+      props.history.push("/");
+    } else {
+      alert("Please Upload an image");
+    }
   };
   return (
     <Container maxWidth="lg">
@@ -307,8 +296,8 @@ const CreateProject = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createProject: (data, url, skillArray) =>
-      dispatch(createProject(data, url, skillArray)),
+    createProject: (data, url, photoID, skillArray) =>
+      dispatch(createProject(data, url, photoID, skillArray)),
   };
 };
 // export default connect(null, mapDispatchToProps)(CreateProject);

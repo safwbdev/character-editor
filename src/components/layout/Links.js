@@ -6,6 +6,9 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 const Navbar = () => {
   return (
     <>
+      <NavLink to="/list">
+        <Button>List</Button>
+      </NavLink>
       <NavLink to="/create-project">
         <Button>
           <AddCircleIcon /> Project

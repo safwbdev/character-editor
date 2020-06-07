@@ -1,4 +1,4 @@
-export const createWork = (work) => {
+export const createWork = (work, url, photoID) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to db
     const firestore = getFirestore();
@@ -6,14 +6,15 @@ export const createWork = (work) => {
       .collection("work")
       .add({
         ...work,
-        name: "school name",
-        location: "KL",
-        startDate: "2011",
-        endDate: "2017",
-        photoId: null,
-        photoUrl: null,
-        role: "dev",
-        author: "Stefaan",
+        // name: "school name",
+        // location: "KL",
+        // startDate: "2011",
+        // endDate: "2017",
+        // photoId: null,
+        photoUrl: url,
+        photoID: photoID,
+        // role: "dev",
+        // author: "Stefaan",
         createdAt: new Date(),
       })
       .then(() => {

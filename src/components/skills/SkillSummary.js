@@ -16,14 +16,12 @@ import { compose } from "redux";
 const SkillSummary = (props) => {
   const { skill } = props;
   const deleteRow = (id) => {
-    console.log("DELETE PRESSED! " + id);
     props.deleteSkill(id);
   };
   return (
     <ListItem>
       <ListItemAvatar>
         <Avatar>
-          {/* <FolderIcon /> */}
           <i class={skill.icon}></i>
         </Avatar>
       </ListItemAvatar>
@@ -46,21 +44,13 @@ const SkillSummary = (props) => {
   );
 };
 
-// export default ProjectSummary;
-
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteSkill: (id) => dispatch(deleteSkill(id)),
   };
 };
-// export default connect(null, mapDispatchToProps)(CreateProject);
 
-const mapStateToProps = (state) => {
-  return {
-    skills: state.firestore.ordered.skills,
-  };
-};
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(null, mapDispatchToProps),
   firestoreConnect([{ collection: "skills" }])
 )(SkillSummary);
