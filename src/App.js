@@ -10,13 +10,16 @@ import CreateSkill from "./components/skills/CreateSkill";
 import EditSkill from "./components/skills/EditSkill";
 import CreateEducation from "./components/education/CreateEducation";
 import CreateWork from "./components/work/CreateWork";
+import { Hidden } from "@material-ui/core";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Navbar />
+          <Hidden only="xs">
+            <Navbar />
+          </Hidden>
           <Switch>
             <Route exact path="/" component={Preview} />
             <Route exact path="/list" component={Dashboard} />

@@ -1,14 +1,13 @@
 import React from "react";
 import { Container } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
 import SkillSection from "../skills/SkillSection";
+import EducationSection from "../education/EducationSection";
 
 const Preview = () => {
   return (
     <Container maxWidth="lg">
-      {/* <Grid container spacing={3}> */}
+      <EducationSection />
       <SkillSection />
-      {/* </Grid> */}
     </Container>
   );
 };

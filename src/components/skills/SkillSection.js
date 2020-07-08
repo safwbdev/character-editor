@@ -51,6 +51,11 @@ const SkillSection = (props) => {
 
   return (
     <Grid container spacing={12}>
+      <Grid item xs={12} className="skill-box">
+        <Typography variant="h4" component="h4">
+          Skills
+        </Typography>
+      </Grid>
       {skillArray &&
         skillArray.map((data) => {
           return (
@@ -65,8 +70,6 @@ const SkillSection = (props) => {
   );
 };
 
-// export default SkillSection;
-
 const mapStateToProps = (state) => {
   return {
     skills: state.firestore.ordered.skills,
@@ -74,5 +77,5 @@ const mapStateToProps = (state) => {
 };
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: "skills" }])
+  firestoreConnect([{ collection: "skills", orderBy: ["name", "asc"] }])
 )(SkillSection);
