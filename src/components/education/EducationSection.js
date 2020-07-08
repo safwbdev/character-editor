@@ -1,13 +1,8 @@
 import React from "react";
-import Chip from "@material-ui/core/Chip";
 import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Avatar from "@material-ui/core/Avatar";
+import { Grid, Typography, Card, CardContent, Avatar } from "@material-ui/core";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -49,34 +44,23 @@ const EducationSection = (props) => {
     ],
   };
 
-  const ShowEducation = ({ title, skillType, styleCclass }) => {
+  const EducationBox = ({ data }) => {
+    const { photoUrl, endYear, field, name, location } = data;
     return (
-      <>
-        {education &&
-          education.map((data) => {
-            return (
-              <div className="edu-box">
-                lol
-                {/* <Card>
-                  <CardContent className="edu-content">
-                    <Avatar alt="" src={data.photoUrl} className="edu-img" />
-                    <div className="block">
-                      <Typography component="h6" variant="h6">
-                        {data.endYear} | {data.field}
-                      </Typography>
-                      <Typography variant="subtitle1" variant="subtitle1">
-                        {data.name}
-                      </Typography>
-                      <Typography variant="subtitle2" variant="subtitle2">
-                        {data.location}
-                      </Typography>
-                    </div>
-                  </CardContent>
-                </Card> */}
-              </div>
-            );
-          })}
-      </>
+      <div className="edu-box">
+        <Card>
+          <CardContent className="edu-content">
+            <Avatar alt="" src={photoUrl} className="edu-img" />
+            <div className="block">
+              <Typography component="h6" variant="h6">
+                {endYear} | {field}
+              </Typography>
+              <Typography variant="subtitle1">{name}</Typography>
+              <Typography variant="subtitle2">{location}</Typography>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     );
   };
 
@@ -89,58 +73,11 @@ const EducationSection = (props) => {
       </Grid>
       <Grid item xs={12} className="">
         <Slider {...settings}>
-          {/* <ShowEducation /> */}
-
           {education &&
-            education.map((data) => {
-              return (
-                <div className="edu-box">
-                  <Card>
-                    <CardContent className="edu-content">
-                      <Avatar alt="" src={data.photoUrl} className="edu-img" />
-                      <div className="block">
-                        <Typography component="h6" variant="h6">
-                          {data.endYear} | {data.field}
-                        </Typography>
-                        <Typography variant="subtitle1" variant="subtitle1">
-                          {data.name}
-                        </Typography>
-                        <Typography variant="subtitle2" variant="subtitle2">
-                          {data.location}
-                        </Typography>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              );
+            education.map((data, index) => {
+              return <EducationBox key={index} data={data} />;
             })}
         </Slider>
-        {/* <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-          <div>
-            <h3>7</h3>
-          </div>
-          <div>
-            <h3>8</h3>
-          </div>
-        </Slider> */}
       </Grid>
     </Grid>
   );
