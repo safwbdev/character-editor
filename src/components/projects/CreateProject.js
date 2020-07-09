@@ -79,12 +79,12 @@ class CreateEducation extends Component {
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
           <Grid container spacing={3}>
-            <Grid xs={12} />
+            <Grid item xs={12} />
             <Grid item sm={4}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Typography variant="h5" component="h5">
-                    Education Image
+                    Project Image
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>

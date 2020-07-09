@@ -64,92 +64,111 @@ class CreateEducation extends Component {
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
           <Grid container spacing={3}>
-            <Grid xs={12} />
-            <Grid item xs={12}>
-              <Typography variant="h5" component="h5">
-                Education Image
-              </Typography>
-            </Grid>
+            <Grid item xs={12} />
             <Grid item sm={4}>
-              {image ? <img src={image} alt="" /> : null}
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Typography variant="h5" component="h5">
+                    Education Image
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <label htmlFor="file-upload" className="imageInput-label">
+                    {image ? "Upload a Different Image" : "Upload Image"}
+                  </label>
+                </Grid>
+                <Grid item xs={12}>
+                  <input
+                    type="file"
+                    id="file-upload"
+                    accept="image/*"
+                    className="imageInput"
+                    onChange={this.fileChangedHandler}
+                  />
+                  {image ? (
+                    <img src={image} className="full-width" alt="" />
+                  ) : null}
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item sm={8}>
-              <input type="file" onChange={this.fileChangedHandler} />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="h5" component="h5">
-                Add New Education
-              </Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="name"
-                type="name"
-                name="name"
-                autoComplete="name"
-                label="School Name"
-                variant="outlined"
-                onChange={this.handleChange}
-                required
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="field"
-                type="field"
-                name="field"
-                autoComplete="field"
-                label="Field"
-                variant="outlined"
-                onChange={this.handleChange}
-                required
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                id="location"
-                type="location"
-                name="location"
-                autoComplete="location"
-                label="Location"
-                variant="outlined"
-                onChange={this.handleChange}
-                required
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                id="startYear"
-                type="number"
-                name="startYear"
-                autoComplete="startYear"
-                label="Start Year"
-                variant="outlined"
-                onChange={this.handleChange}
-                required
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                id="endYear"
-                type="number"
-                name="endYear"
-                autoComplete="endYear"
-                label="End Year"
-                variant="outlined"
-                onChange={this.handleChange}
-                required
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Button type="submit" variant="contained">
-                Submit
-              </Button>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Typography variant="h5" component="h5">
+                    Add New Education
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="name"
+                    type="name"
+                    name="name"
+                    autoComplete="name"
+                    label="School Name"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="field"
+                    type="field"
+                    name="field"
+                    autoComplete="field"
+                    label="Field"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="location"
+                    type="location"
+                    name="location"
+                    autoComplete="location"
+                    label="Location"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    id="startYear"
+                    type="number"
+                    name="startYear"
+                    autoComplete="startYear"
+                    label="Start Year"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    id="endYear"
+                    type="number"
+                    name="endYear"
+                    autoComplete="endYear"
+                    label="End Year"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12} align="right">
+                  <Button type="submit" variant="contained">
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </form>
