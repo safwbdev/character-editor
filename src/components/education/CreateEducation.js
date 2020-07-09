@@ -16,9 +16,6 @@ class CreateEducation extends Component {
     this.fileChangedHandler = this.fileChangedHandler.bind(this);
     this.state = {
       image: null,
-      url: "",
-      photoID: "",
-      progress: 0,
       name: "",
       field: "",
       location: "",
@@ -53,10 +50,9 @@ class CreateEducation extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (this.state.image) {
-      alert("UPLADED");
       console.log(this.state);
-      // props.createEducation(data, url, photoID);
-      // props.history.push("/");
+      this.props.createEducation(this.state);
+      this.props.history.push("/");
     } else {
       alert("Please upload an image.");
     }
@@ -164,8 +160,7 @@ class CreateEducation extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createEducation: (education, url, photoID) =>
-      dispatch(createEducation(education, url, photoID)),
+    createEducation: (data) => dispatch(createEducation(data)),
   };
 };
 // export default connect(null, mapDispatchToProps)(CreateProject);

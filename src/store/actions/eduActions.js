@@ -1,17 +1,15 @@
-export const createEducation = (edu, url, photoID) => {
+export const createEducation = (data) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to db
     const firestore = getFirestore();
     firestore
       .collection("education")
       .add({
-        ...edu,
-        photoUrl: url,
-        photoID: photoID,
+        ...data,
         createdAt: new Date(),
       })
       .then(() => {
-        dispatch({ type: "CREATE_EDUCATION", edu });
+        dispatch({ type: "CREATE_EDUCATION", data });
       })
       .catch((err) => {
         dispatch({ type: "CREATE_EDUCATION_ERROR", err });

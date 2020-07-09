@@ -45,12 +45,12 @@ const EducationSection = (props) => {
   };
 
   const EducationBox = ({ data }) => {
-    const { photoUrl, endYear, field, name, location } = data;
+    const { image, endYear, field, name, location } = data;
     return (
       <div className="edu-box">
         <Card>
           <CardContent className="edu-content">
-            <Avatar alt="" src={photoUrl} className="edu-img" />
+            <Avatar alt="" src={image} className="edu-img" />
             <div className="block">
               <Typography component="h6" variant="h6">
                 {endYear} | {field}

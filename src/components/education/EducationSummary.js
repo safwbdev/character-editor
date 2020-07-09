@@ -20,7 +20,7 @@ const EducationSummary = (props) => {
   return (
     <ListItem>
       <ListItemAvatar>
-        <Avatar src={project.photoUrl} variant="square" alt="" />
+        <Avatar src={project.image} variant="square" alt="" />
       </ListItemAvatar>
       <ListItemText primary={project.name} />
       <ListItemSecondaryAction>
