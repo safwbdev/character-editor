@@ -1,260 +1,206 @@
-import React, { useEffect, useState } from "react";
+import React, { Component } from "react";
 import { createWork } from "../../store/actions/workActions";
 import { connect } from "react-redux";
-import { Container, Grid, Button } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import { useForm } from "react-hook-form";
-import { storage } from "../../config/config";
 import { compose } from "redux";
-import Avatar from "@material-ui/core/Avatar";
-import LinearProgress from "@material-ui/core/LinearProgress";
+import Resizer from "react-image-file-resizer";
+import {
+  Container,
+  Grid,
+  Button,
+  Typography,
+  TextField,
+} from "@material-ui/core";
 
-const CreateWork = (props) => {
-  // image upload
-  const [image, setImage] = useState(null);
-  const [url, setUrl] = useState("");
-  const [photoID, setphotoID] = useState("");
-  const [progress, setProgress] = useState(0);
+class CreateWork extends Component {
+  constructor(props) {
+    super(props);
+    this.fileChangedHandler = this.fileChangedHandler.bind(this);
+    this.state = {
+      image: null,
+      name: "",
+      location: "",
+      role: "",
+      startDate: null,
+      endDate: null,
+      desc: "",
+    };
+  }
 
-  // form stuff
-  const { register, handleSubmit, errors } = useForm();
-
-  const handleChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
+  fileChangedHandler(event) {
+    var fileInput = false;
+    if (event.target.files[0]) {
+      fileInput = true;
     }
-  };
-
-  useEffect(() => {});
-
-  const handleUpload = () => {
-    let type = "";
-    let d = new Date(),
-      filename =
-        [d.getFullYear(), d.getMonth() + 1, d.getDate()].join("") +
-        [d.getHours(), d.getMinutes(), d.getSeconds()].join("");
-    let noError = true;
-
-    switch (image.type) {
-      case "image/jpeg":
-        type = ".jpeg";
-        noError = true;
-        break;
-      case "image/jpg":
-        type = ".jpg";
-        noError = true;
-        break;
-      case "image/png":
-        type = ".png";
-        noError = true;
-        break;
-      default:
-        noError = false;
-    }
-
-    if (noError) {
-      const imageFile = filename + type;
-      const imageUrl = "images/education/";
-      const fullUrl = imageUrl + imageFile;
-      const uploadTask = storage.ref(fullUrl).put(image);
-
-      setphotoID(filename);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setProgress(progress);
+    if (fileInput) {
+      Resizer.imageFileResizer(
+        event.target.files[0],
+        700,
+        700,
+        "JPEG",
+        100,
+        0,
+        (uri) => {
+          this.setState({ image: uri });
         },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          storage
-            .ref(imageUrl)
-            .child(imageFile)
-            .getDownloadURL()
-            .then((url) => {
-              setUrl(url);
-              setImage(null);
-              setProgress(0);
-            });
-        }
+        "base64"
       );
-    } else {
-      alert("Invalid file format. Please use Jpg, Jpeg or Pngs");
     }
+  }
+  handleChange = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
   };
-
-  const onSubmit = (data, e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    console.log("SUBMIT");
-    console.log(data);
-    if (url) {
-      props.createWork(data, url, photoID);
-      props.history.push("/");
+    if (this.state.image) {
+      console.log(this.state);
+      this.props.createWork(this.state);
+      // this.props.history.push("/");
     } else {
-      alert("Please Upload an image");
+      alert("Please upload an image.");
     }
   };
-  return (
-    <Container maxWidth="lg">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={3}>
-          <Grid xs={12} />
-          <Grid item xs={12}>
-            <Typography variant="h5" component="h5">
-              Work Image
-            </Typography>
-          </Grid>
-          <Grid item sm={4}>
-            <Avatar
-              className="profile-img"
-              variant="square"
-              src={
-                url
-                  ? url
-                  : "https://via.placeholder.com/400x400?text=Work+Image"
-              }
-            />
-          </Grid>
-          <Grid item sm={8}>
-            {progress >= 1 ? (
-              <LinearProgress variant="determinate" value={progress} />
-            ) : null}
-            <br />
-            <input type="file" onChange={handleChange} />
-            <br />
-            <br />
-            {image ? (
-              <Button variant="contained" onClick={handleUpload}>
-                Upload
-              </Button>
-            ) : (
-              <Button variant="contained" disabled>
-                Upload
-              </Button>
-            )}
-            <br />
-            <br />
-          </Grid>
-          <Grid item xs={12}>
-            <Typography variant="h5" component="h5">
-              Add New Work Experience
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="name"
-              type="name"
-              name="name"
-              autoComplete="name"
-              label="Comapany Name"
-              variant="outlined"
-              errors={!!errors.name}
-              inputRef={register({
-                required: true,
-              })}
-              required
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="role"
-              type="role"
-              name="role"
-              autoComplete="role"
-              label="Role"
-              variant="outlined"
-              errors={!!errors.role}
-              inputRef={register({
-                required: true,
-              })}
-              required
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="location"
-              type="location"
-              name="location"
-              autoComplete="location"
-              label="Location"
-              variant="outlined"
-              errors={!!errors.location}
-              inputRef={register({
-                required: true,
-              })}
-              required
-              fullWidth
-            />
-          </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="startDate"
-              name="startDate"
-              label="Start Date"
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              required
-              fullWidth
-            />
-          </Grid>
+  render() {
+    const { image } = this.state;
+    return (
+      <Container maxWidth="lg">
+        <form onSubmit={this.handleSubmit}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} />
+            <Grid item sm={4}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Typography variant="h5" component="h5">
+                    Work Image
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <label htmlFor="file-upload" className="imageInput-label">
+                    {image ? "Upload a Different Image" : "Upload Image"}
+                  </label>
+                </Grid>
+                <Grid item xs={12}>
+                  <input
+                    type="file"
+                    id="file-upload"
+                    accept="image/*"
+                    className="imageInput"
+                    onChange={this.fileChangedHandler}
+                  />
+                  {image ? (
+                    <img src={image} className="full-width" alt="" />
+                  ) : null}
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item sm={8}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Typography variant="h5" component="h5">
+                    Add New Work Experience
+                  </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="name"
+                    type="name"
+                    name="name"
+                    autoComplete="name"
+                    label="Comasany Name"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="role"
+                    type="role"
+                    name="role"
+                    autoComplete="role"
+                    label="Role"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="location"
+                    type="location"
+                    name="location"
+                    autoComplete="location"
+                    label="Location"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    required
+                    fullWidth
+                  />
+                </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="endDate"
-              name="endDate"
-              label="End Date"
-              type="date"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              required
-              fullWidth
-            />
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    id="startDate"
+                    name="startDate"
+                    label="Start Date"
+                    type="date"
+                    onChange={this.handleChange}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    id="endDate"
+                    name="endDate"
+                    label="End Date"
+                    type="date"
+                    onChange={this.handleChange}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    required
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    id="desc"
+                    name="desc"
+                    type="desc"
+                    autoComplete="desc"
+                    label="Description"
+                    onChange={this.handleChange}
+                    multiline
+                    fullWidth
+                    required
+                    rows={4}
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={12} align="right">
+                  <Button type="submit" variant="contained">
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="desc"
-              name="desc"
-              type="desc"
-              autoComplete="desc"
-              label="Description"
-              multiline
-              fullWidth
-              required
-              rows={4}
-              variant="outlined"
-              errors={!!errors.desc}
-              inputRef={register({
-                required: true,
-              })}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained">
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </Container>
-  );
-};
+        </form>
+      </Container>
+    );
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createWork: (education, url, photoID) =>
-      dispatch(createWork(education, url, photoID)),
+    createWork: (data) => dispatch(createWork(data)),
   };
 };
 // export default connect(null, mapDispatchToProps)(CreateProject);

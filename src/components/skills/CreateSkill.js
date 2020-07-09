@@ -33,7 +33,7 @@ const CreateSkill = (props) => {
     <Container maxWidth="lg">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          <Grid xs={12} />
+          <Grid item xs={12} />
           <Grid item xs={12}>
             <Typography variant="h5" component="h5">
               Add New Skill
@@ -107,20 +107,24 @@ const CreateSkill = (props) => {
                 }}
               >
                 <option aria-label="None" value="" />
-                {fontawesome.map((icon) => {
+                {fontawesome.map((icon, index) => {
                   let val = icon;
                   let val1 = val.replace("fas ", "");
                   let val2 = val1.replace("fab ", "");
                   let val3 = val2.replace("far ", "");
                   let text = val3.replace("fa-", "");
-                  return <option value={icon}>{text}</option>;
+                  return (
+                    <option key={index} value={icon}>
+                      {text}
+                    </option>
+                  );
                 })}
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={2}>
             <Typography variant="h3" component="h3">
-              <i class={skillIcon}></i>
+              <i className={skillIcon}></i>
             </Typography>
           </Grid>
           <Grid item xs={12}>

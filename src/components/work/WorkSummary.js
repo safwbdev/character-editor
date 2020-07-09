@@ -22,7 +22,7 @@ const WorkSummary = (props) => {
   return (
     <ListItem>
       <ListItemAvatar>
-        <Avatar src={work.photoUrl} variant="square" alt="" />
+        <Avatar src={work.image} variant="square" alt="" />
       </ListItemAvatar>
       <ListItemText primary={work.name} />
       <ListItemSecondaryAction>
