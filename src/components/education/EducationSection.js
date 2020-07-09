@@ -65,7 +65,7 @@ const EducationSection = (props) => {
   };
 
   return (
-    <Grid container spacing={12}>
+    <Grid container spacing={2}>
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
           Education

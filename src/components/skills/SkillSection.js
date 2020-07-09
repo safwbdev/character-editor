@@ -27,15 +27,16 @@ const SkillSection = (props) => {
           {title}
         </Typography>
         {skills &&
-          skills.map((data) => {
+          skills.map((data, index) => {
             const content = (
               <span>
-                <i class={data.icon}></i> <>{data.name}</>
+                <i className={data.icon}></i> <>{data.name}</>
               </span>
             );
             if (data.type === skillType) {
               return (
                 <Chip
+                  key={index}
                   size="medium"
                   label={content}
                   className={styleCclass}
@@ -50,16 +51,17 @@ const SkillSection = (props) => {
   };
 
   return (
-    <Grid container spacing={12}>
+    <Grid container spacing={2}>
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
           Skills
         </Typography>
       </Grid>
       {skillArray &&
-        skillArray.map((data) => {
+        skillArray.map((data, index) => {
           return (
             <ShowSkills
+              key={index}
               title={data.title}
               skillType={data.type}
               styleCclass={data.type}

@@ -1,20 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
-import { Container } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
+import { Tabs, Tab, Box, Paper, Container, Grid } from "@material-ui/core/";
 import SkillList from "../skills/SkillList";
 import WorkList from "../work/WorkList";
 import ProjectList from "../projects/ProjectList";
 import EducationList from "../education/EducationList";
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
+function TabPanel({ children, value, index, ...other }) {
   return (
     <div
       role="tabpanel"
@@ -23,11 +15,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box p={3}>{children}</Box>}
     </div>
   );
 }
@@ -39,7 +27,7 @@ TabPanel.propTypes = {
 };
 
 export default function SimpleTabs() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(3);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

@@ -8,15 +8,12 @@ import List from "@material-ui/core/List";
 class WorkList extends Component {
   render() {
     const { work } = this.props;
-    console.log("iououiiou");
-    console.log(work);
+
     return (
       <List>
         {work &&
-          work.map((data) => {
-            return <WorkSummary work={data} />;
-            // return <p>lol</p>;
-            // return <p>{data.name}</p>;
+          work.map((data, index) => {
+            return <WorkSummary key={index} work={data} />;
           })}
       </List>
     );

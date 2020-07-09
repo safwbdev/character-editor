@@ -8,13 +8,11 @@ import List from "@material-ui/core/List";
 class EducationList extends Component {
   render() {
     const { educations } = this.props;
-    console.log("educations");
-    console.log(educations);
     return (
       <List>
         {educations &&
-          educations.map((project) => {
-            return <ProjectSummary project={project} />;
+          educations.map((project, index) => {
+            return <ProjectSummary key={index} project={project} />;
           })}
       </List>
     );

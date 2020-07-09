@@ -22,7 +22,7 @@ const SkillSummary = (props) => {
     <ListItem>
       <ListItemAvatar>
         <Avatar>
-          <i class={skill.icon}></i>
+          <i className={skill.icon}></i>
         </Avatar>
       </ListItemAvatar>
       <ListItemText primary={skill.name} secondary={skill.type} />

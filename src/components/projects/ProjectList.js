@@ -12,8 +12,8 @@ class SkillList extends Component {
     return (
       <List>
         {projects &&
-          projects.map((project) => {
-            return <ProjectSummary project={project} />;
+          projects.map((project, index) => {
+            return <ProjectSummary key={index} project={project} />;
           })}
       </List>
     );

@@ -12,8 +12,8 @@ class SkillList extends Component {
     return (
       <List>
         {skills &&
-          skills.map((skill) => {
-            return <SkillSummary skill={skill} />;
+          skills.map((skill, index) => {
+            return <SkillSummary key={index} skill={skill} />;
           })}
       </List>
     );
