@@ -1,21 +1,23 @@
-export const createProject = (project, url, photoID, skillArray) => {
+export const createProject = (data) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     console.log("PROJECT CREATE");
     // make async call to db
+    console.log(data);
     const firestore = getFirestore();
     firestore
       .collection("projects")
       .add({
-        ...project,
-        // title: project.name,
-        // desc: project.desc,
-        stacks: skillArray,
-        photoUrl: url,
-        photoID: photoID,
+        demo: data.demo,
+        github: data.github,
+        desc: data.desc,
+        image: data.image,
+        projectType: data.projectType,
+        skillType: data.skillType,
+        title: data.title,
         createdAt: new Date(),
       })
       .then(() => {
-        dispatch({ type: "CREATE_PROJECT", project });
+        dispatch({ type: "CREATE_PROJECT", data });
       })
       .catch((err) => {
         dispatch({ type: "CREATE_PROJECT_ERROR", err });

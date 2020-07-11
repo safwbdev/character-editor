@@ -9,33 +9,51 @@ import {
   Button,
   Typography,
   TextField,
+  FormControl,
+  InputLabel,
+  Select,
 } from "@material-ui/core";
 import { firestoreConnect } from "react-redux-firebase";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 class EditWork extends Component {
   constructor(props) {
     super(props);
     this.fileChangedHandler = this.fileChangedHandler.bind(this);
     this.state = {
+      getSkills: null,
       image: null,
-      name: "",
-      field: "",
-      location: "",
-      startYear: "",
-      endYear: "",
+      title: "",
+      github: "",
+      demo: "",
+      projectType: "",
+      //   getSkills: "",
+      skillType: "",
+      stack: "",
+      desc: "",
     };
   }
-  componentWillReceiveProps({ education }) {
-    if (education) {
+  componentWillReceiveProps(props) {
+    console.log(props);
+    const { project } = props;
+    if (project) {
       this.setState({
-        image: education.image,
-        name: education.name,
-        field: education.field,
-        location: education.location,
-        startYear: education.startYear,
-        endYear: education.endYear,
+        image: project.image,
+        title: project.title,
+        desc: project.desc,
+        github: project.github,
+        demo: project.demo,
+        projectType: project.projectType,
+        // getSkills: skills,
+        skillType: project.skillType,
+        stack: project.stacks,
       });
     }
+    // if (skills) {
+    //   this.setState({
+    //     getSkills: skills,
+    //   });
+    // }
   }
   fileChangedHandler(event) {
     var fileInput = false;
@@ -72,7 +90,18 @@ class EditWork extends Component {
   };
 
   render() {
-    const { image, name, field, location, startYear, endYear } = this.state;
+    const {
+      image,
+      title,
+      github,
+      demo,
+      projectType,
+      getSkills,
+      skillType,
+      //   stack,
+      desc,
+    } = this.state;
+    console.log(this.state);
     return (
       <Container maxWidth="lg">
         <form onSubmit={this.handleSubmit}>
@@ -82,7 +111,7 @@ class EditWork extends Component {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Typography variant="h5" component="h5">
-                    Education Image
+                    Project Image
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
@@ -108,18 +137,18 @@ class EditWork extends Component {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Typography variant="h5" component="h5">
-                    Edit Education
+                    Add New Project
                   </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    id="name"
+                    id="title"
                     type="text"
-                    name="name"
-                    autoComplete="name"
-                    label="School Name"
+                    name="title"
+                    autoComplete="title"
+                    label="Project Title"
                     variant="outlined"
-                    value={name}
+                    value={title}
                     onChange={this.handleChange}
                     required
                     fullWidth
@@ -127,60 +156,98 @@ class EditWork extends Component {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    id="field"
-                    type="field"
-                    name="field"
-                    autoComplete="field"
-                    label="Field"
-                    variant="outlined"
-                    value={field}
-                    onChange={this.handleChange}
+                    id="desc"
+                    name="desc"
+                    type="text"
+                    autoComplete="desc"
+                    label="Description"
+                    value={desc}
+                    multiline
+                    fullWidth
                     required
+                    rows={4}
+                    variant="outlined"
+                    onChange={this.handleChange}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    id="github"
+                    type="text"
+                    name="github"
+                    value={github}
+                    autoComplete="github"
+                    label="Github Url"
+                    variant="outlined"
+                    onChange={this.handleChange}
+                    fullWidth
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    id="demo"
+                    type="text"
+                    name="demo"
+                    autoComplete="demo"
+                    value={demo}
+                    label="Demo Url"
+                    variant="outlined"
+                    onChange={this.handleChange}
                     fullWidth
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
-                    id="location"
-                    type="text"
-                    name="location"
-                    autoComplete="location"
-                    label="Location"
-                    variant="outlined"
-                    value={location}
-                    onChange={this.handleChange}
-                    required
-                    fullWidth
-                  />
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel htmlFor="oylined-age-native-simple">
+                      Project Type
+                    </InputLabel>
+                    <Select
+                      native
+                      onChange={this.handleChange}
+                      label="Project"
+                      name="projectType"
+                      id="projectType"
+                      type="type"
+                      value={projectType}
+                    >
+                      <option aria-label="None" value="" />
+                      <option value="client">Client</option>
+                      <option value="personal">Personal</option>
+                    </Select>
+                  </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    id="startYear"
-                    type="number"
-                    name="startYear"
-                    autoComplete="startYear"
-                    label="Start Year"
-                    variant="outlined"
-                    value={startYear}
-                    onChange={this.handleChange}
-                    required
-                    fullWidth
-                  />
+                <Grid item xs={12}>
+                  {getSkills ? (
+                    <Autocomplete
+                      multiple
+                      id="tags-outlined"
+                      options={getSkills}
+                      getOptionLabel={(option) => option.name}
+                      filterSelectedOptions
+                      defaultValue={skillType}
+                      onChange={(e, data) => {
+                        this.setState({ skillType: data });
+                      }}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          variant="outlined"
+                          label="Stacks Used"
+                          fullWidth
+                          id="stack"
+                          name="stack"
+                          type="stack"
+                          autoComplete="stack"
+                        />
+                      )}
+                    />
+                  ) : (
+                    "There was an error loading. Please refresh the page."
+                  )}
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    id="endYear"
-                    type="number"
-                    name="endYear"
-                    autoComplete="endYear"
-                    label="End Year"
-                    variant="outlined"
-                    value={endYear}
-                    onChange={this.handleChange}
-                    required
-                    fullWidth
-                  />
-                </Grid>
+
                 <Grid item xs={12} align="right">
                   <Button type="submit" variant="contained">
                     Update
@@ -203,16 +270,19 @@ const mapDispatchToProps = (dispatch) => {
 // export default connect(null, mapDispatchToProps)(CreateProject);
 
 const mapStateToProps = (state, ownProps) => {
-  const getWork = state.firestore.data.education;
+  //   console.log(state.firestore.data.skills);
+  const getWork = state.firestore.data.projects;
   const id = ownProps.match.params.id;
   const work = getWork ? getWork[id] : null;
-
+  const getSkills = state.firestore.ordered.skills;
+  const skills = getSkills ? getSkills : null;
   return {
-    education: work,
+    project: work,
+    skills: skills,
   };
 };
 // export default compose(connect(mapStateToProps, mapDispatchToProps))(EditWork);
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  firestoreConnect([{ collection: "education" }])
+  firestoreConnect([{ collection: "projects" }, { collection: "skills" }])
 )(EditWork);

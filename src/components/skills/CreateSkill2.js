@@ -9,34 +9,31 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { useForm } from "react-hook-form";
 import fontawesome from "./fontawsome5.json";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const CreateSkill = (props) => {
-  const { register, handleSubmit, errors, setValue } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [skillType, setSkillType] = useState("");
   const [skillIcon, setSkillIcon] = useState("");
+
   const handleChange = (e) => {
     setSkillType(e.target.value);
   };
   const handleIcon = (e) => {
     setSkillIcon(e.target.value);
   };
-  useEffect(() => {
-    register({ name: "icon" });
-  });
+  useEffect(() => {});
 
   const onSubmit = (data, e) => {
     e.preventDefault();
-    console.log("submit");
     console.log(data);
-    // props.createSkill(data);
-    // props.history.push("/");
+    props.createSkill(data);
+    props.history.push("/");
   };
   return (
     <Container maxWidth="lg">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          <Grid xs={12} />
+          <Grid item xs={12} />
           <Grid item xs={12}>
             <Typography variant="h5" component="h5">
               Add New Skill
@@ -54,7 +51,6 @@ const CreateSkill = (props) => {
               inputRef={register({
                 required: true,
               })}
-              //   onChange={handleChange}
               required
               fullWidth
             />
@@ -91,7 +87,7 @@ const CreateSkill = (props) => {
               </Select>
             </FormControl>
           </Grid>
-          {/* <Grid item xs={10}>
+          <Grid item xs={10}>
             <FormControl variant="outlined" fullWidth>
               <InputLabel htmlFor="oylined-age-native-simple">
                 Select Icon
@@ -111,46 +107,26 @@ const CreateSkill = (props) => {
                 }}
               >
                 <option aria-label="None" value="" />
-                {fontawesome.map((icon) => {
+                {fontawesome.map((icon, index) => {
                   let val = icon;
                   let val1 = val.replace("fas ", "");
                   let val2 = val1.replace("fab ", "");
                   let val3 = val2.replace("far ", "");
                   let text = val3.replace("fa-", "");
-                  return <option value={icon}>{text}</option>;
+                  return (
+                    <option key={index} value={icon}>
+                      {text}
+                    </option>
+                  );
                 })}
               </Select>
             </FormControl>
-          </Grid> */}
-          <Grid item xs={12}>
-            <Autocomplete
-              id="combo-box-demo"
-              options={fontawesome}
-              // onChange={handleIcon}
-              getOptionLabel={(option) => option}
-              // style={{ width: 300 }}
-              fullWidth
-              onChange={(e, data) => {
-                setValue("icon", data);
-              }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Select Icon"
-                  variant="outlined"
-                  id="icon"
-                  name="icon"
-                  type="icon"
-                  autoComplete="icon"
-                />
-              )}
-            />
           </Grid>
-          {/* <Grid item xs={2}>
+          <Grid item xs={2}>
             <Typography variant="h3" component="h3">
-              <i class={this.state.icon}></i>
+              <i className={skillIcon}></i>
             </Typography>
-          </Grid> */}
+          </Grid>
           <Grid item xs={12}>
             <Button type="submit" variant="contained">
               Submit

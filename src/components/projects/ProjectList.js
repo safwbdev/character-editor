@@ -13,7 +13,7 @@ class SkillList extends Component {
       <List>
         {projects &&
           projects.map((project, index) => {
-            return <ProjectSummary key={index} project={project} />;
+            return <ProjectSummary key={index} data={project} />;
           })}
       </List>
     );

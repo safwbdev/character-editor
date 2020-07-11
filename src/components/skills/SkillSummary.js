@@ -9,7 +9,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import { deleteSkill } from "../../store/actions/skillActions";
-import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
@@ -50,7 +49,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default compose(
-  connect(null, mapDispatchToProps),
-  firestoreConnect([{ collection: "skills" }])
-)(SkillSummary);
+export default compose(connect(null, mapDispatchToProps))(SkillSummary);
+// export default compose(
+//   connect(null, mapDispatchToProps),
+//   firestoreConnect([{ collection: "skills" }])
+// )(SkillSummary);

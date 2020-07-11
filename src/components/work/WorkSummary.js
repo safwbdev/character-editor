@@ -9,7 +9,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
 import { deleteWork } from "../../store/actions/workActions";
-import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
@@ -49,7 +48,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default compose(
-  connect(null, mapDispatchToProps),
-  firestoreConnect([{ collection: "work" }])
-)(WorkSummary);
+export default compose(connect(null, mapDispatchToProps))(WorkSummary);
+// export default compose(
+//   connect(null, mapDispatchToProps),
+//   firestoreConnect([{ collection: "work" }])
+// )(WorkSummary);

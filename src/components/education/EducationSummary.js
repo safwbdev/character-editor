@@ -7,30 +7,33 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import { deleteEducation } from "../../store/actions/eduActions";
-import { firestoreConnect } from "react-redux-firebase";
+import { Link } from "react-router-dom";
+import { deleteWork } from "../../store/actions/workActions";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-const EducationSummary = (props) => {
-  const { project } = props;
+const WorkSummary = (props) => {
+  const { data } = props;
+
   const deleteRow = (id) => {
-    props.deleteEducation(id);
+    props.deleteWork(id);
   };
   return (
     <ListItem>
       <ListItemAvatar>
-        <Avatar src={project.image} variant="square" alt="" />
+        <Avatar src={data.image} variant="square" alt="" />
       </ListItemAvatar>
-      <ListItemText primary={project.name} />
+      <ListItemText primary={data.name} />
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
-          <EditIcon />
-        </IconButton>
+        <Link to={"/edit-education/" + data.id}>
+          <IconButton edge="end" aria-label="delete">
+            <EditIcon />
+          </IconButton>
+        </Link>
         <IconButton
           edge="end"
           aria-label="delete"
-          onClick={() => deleteRow(project.id)}
+          onClick={() => deleteRow(data.id)}
         >
           <DeleteIcon />
         </IconButton>
@@ -41,11 +44,8 @@ const EducationSummary = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteEducation: (id) => dispatch(deleteEducation(id)),
+    deleteWork: (id) => dispatch(deleteWork(id)),
   };
 };
 
-export default compose(
-  connect(null, mapDispatchToProps),
-  firestoreConnect([{ collection: "education" }])
-)(EducationSummary);
+export default compose(connect(null, mapDispatchToProps))(WorkSummary);

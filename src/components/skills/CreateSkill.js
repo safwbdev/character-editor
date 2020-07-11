@@ -1,142 +1,148 @@
-import React, { useEffect, useState } from "react";
+import React, { Component } from "react";
 import { createSkill } from "../../store/actions/skillActions";
 import { connect } from "react-redux";
-import { Container, Grid, Button } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import { useForm } from "react-hook-form";
+import {
+  Container,
+  Grid,
+  Button,
+  Typography,
+  TextField,
+  FormControl,
+  Select,
+  InputLabel,
+} from "@material-ui/core";
 import fontawesome from "./fontawsome5.json";
 
-const CreateSkill = (props) => {
-  const { register, handleSubmit, errors } = useForm();
-  const [skillType, setSkillType] = useState("");
-  const [skillIcon, setSkillIcon] = useState("");
+class CreateSkill extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: null,
+      skillType: null,
+      skillIcon: null,
+    };
+  }
 
-  const handleChange = (e) => {
-    setSkillType(e.target.value);
+  handleName = (e) => {
+    this.setState({
+      name: e.target.value,
+    });
   };
-  const handleIcon = (e) => {
-    setSkillIcon(e.target.value);
+  handleChange = (e) => {
+    this.setState({
+      skillType: e.target.value,
+    });
   };
-  useEffect(() => {});
+  handleIcon = (e) => {
+    this.setState({
+      skillIcon: e.target.value,
+    });
+  };
 
-  const onSubmit = (data, e) => {
+  onSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
-    props.createSkill(data);
-    props.history.push("/");
+    console.log(this.state);
+    // this.props.createSkill(data);
+    // this.props.history.push("/");
   };
-  return (
-    <Container maxWidth="lg">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} />
-          <Grid item xs={12}>
-            <Typography variant="h5" component="h5">
-              Add New Skill
-            </Typography>
+
+  render() {
+    return (
+      <Container maxWidth="lg">
+        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
+        <form onSubmit={this.handleSubmit}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} />
+            <Grid item xs={12}>
+              <Typography variant="h5" component="h5">
+                Add New Skill
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="name"
+                type="text"
+                name="name"
+                label="Skill Name"
+                variant="outlined"
+                onChange={this.handleName}
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel htmlFor="oylined-age-native-simple">
+                  Project Type
+                </InputLabel>
+                <Select
+                  native
+                  onChange={this.handleChange}
+                  label="Project"
+                  name="projectType"
+                  id="projectType"
+                  type="type"
+                >
+                  <option aria-label="None" value="" />
+                  <option value="essential">Essential</option>
+                  <option value="technical">Technical</option>
+                  <option value="framework">Framework</option>
+                  <option value="library">Library</option>
+                  <option value="database">Database</option>
+                  <option value="cms">CMS</option>
+                  <option value="os">OS</option>
+                  <option value="tools">Tools</option>
+                  <option value="design">Design</option>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={10}>
+              <FormControl variant="outlined" fullWidth>
+                <InputLabel htmlFor="oylined-age-native-simple">
+                  Select Icon
+                </InputLabel>
+                <Select
+                  native
+                  onChange={this.handleIcon}
+                  label="Skill Icon"
+                  name="icon"
+                  id="icon"
+                  type="icon"
+                >
+                  <option aria-label="None" value="" />
+                  {fontawesome.map((icon, index) => {
+                    let val = icon;
+                    let val1 = val.replace("fas ", "");
+                    let val2 = val1.replace("fab ", "");
+                    let val3 = val2.replace("far ", "");
+                    let text = val3.replace("fa-", "");
+                    return (
+                      <option key={index} value={icon}>
+                        {text}
+                      </option>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={2}>
+              {this.state.skillIcon ? (
+                <Typography variant="h3" component="h3">
+                  <i className={this.state.skillIcon}></i>
+                </Typography>
+              ) : null}
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              id="name"
-              type="name"
-              name="name"
-              autoComplete="name"
-              label="Skill Name"
-              variant="outlined"
-              errors={!!errors.name}
-              inputRef={register({
-                required: true,
-              })}
-              required
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel htmlFor="oylined-age-native-simple">
-                Skill Type
-              </InputLabel>
-              <Select
-                native
-                onChange={handleChange}
-                errors={!!errors.type}
-                inputRef={register({
-                  required: true,
-                })}
-                label="Skill Type"
-                inputProps={{
-                  name: "type",
-                  id: "type",
-                  type: "type",
-                }}
-              >
-                <option aria-label="None" value="" />
-                <option value="essential">Essential</option>
-                <option value="technical">Technical</option>
-                <option value="framework">Framework</option>
-                <option value="library">Library</option>
-                <option value="database">Database</option>
-                <option value="cms">CMS</option>
-                <option value="os">OS</option>
-                <option value="tools">Tools</option>
-                <option value="design">Design</option>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={10}>
-            <FormControl variant="outlined" fullWidth>
-              <InputLabel htmlFor="oylined-age-native-simple">
-                Select Icon
-              </InputLabel>
-              <Select
-                native
-                onChange={handleIcon}
-                errors={!!errors.type}
-                inputRef={register({
-                  required: true,
-                })}
-                label="Skill Icon"
-                inputProps={{
-                  name: "icon",
-                  id: "icon",
-                  type: "icon",
-                }}
-              >
-                <option aria-label="None" value="" />
-                {fontawesome.map((icon, index) => {
-                  let val = icon;
-                  let val1 = val.replace("fas ", "");
-                  let val2 = val1.replace("fab ", "");
-                  let val3 = val2.replace("far ", "");
-                  let text = val3.replace("fa-", "");
-                  return (
-                    <option key={index} value={icon}>
-                      {text}
-                    </option>
-                  );
-                })}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography variant="h3" component="h3">
-              <i className={skillIcon}></i>
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Button type="submit" variant="contained">
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </Container>
-  );
-};
+        </form>
+      </Container>
+    );
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {

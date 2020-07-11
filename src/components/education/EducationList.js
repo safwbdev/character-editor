@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import ProjectSummary from "./EducationSummary";
+import EducationSummary from "./EducationSummary";
 import List from "@material-ui/core/List";
 
 class EducationList extends Component {
@@ -11,8 +11,8 @@ class EducationList extends Component {
     return (
       <List>
         {educations &&
-          educations.map((project, index) => {
-            return <ProjectSummary key={index} project={project} />;
+          educations.map((data, index) => {
+            return <EducationSummary key={index} data={data} />;
           })}
       </List>
     );

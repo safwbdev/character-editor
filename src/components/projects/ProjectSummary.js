@@ -7,30 +7,32 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+import { Link } from "react-router-dom";
 import { deleteProject } from "../../store/actions/projectActions";
-import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
 const ProjectSummary = (props) => {
-  const { project } = props;
+  const { data } = props;
   const deleteRow = (id) => {
     props.deleteProject(id);
   };
   return (
     <ListItem>
       <ListItemAvatar>
-        <Avatar src={project.photoUrl} variant="square" alt="" />
+        <Avatar src={data.image} variant="square" alt="" />
       </ListItemAvatar>
-      <ListItemText primary={project.title} />
+      <ListItemText primary={data.title} />
       <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
-          <EditIcon />
-        </IconButton>
+        <Link to={"/edit-project/" + data.id}>
+          <IconButton edge="end" aria-label="delete">
+            <EditIcon />
+          </IconButton>
+        </Link>
         <IconButton
           edge="end"
           aria-label="delete"
-          onClick={() => deleteRow(project.id)}
+          onClick={() => deleteRow(data.id)}
         >
           <DeleteIcon />
         </IconButton>
@@ -45,7 +47,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default compose(
-  connect(null, mapDispatchToProps),
-  firestoreConnect([{ collection: "project" }])
-)(ProjectSummary);
+export default compose(connect(null, mapDispatchToProps))(ProjectSummary);
+// export default compose(
+//   connect(null, mapDispatchToProps),
+//   firestoreConnect([{ collection: "projects" }])
+// )(ProjectSummary);

@@ -54,7 +54,7 @@ class CreateWork extends Component {
     if (this.state.image) {
       console.log(this.state);
       this.props.createWork(this.state);
-      // this.props.history.push("/");
+      this.props.history.push("/");
     } else {
       alert("Please upload an image.");
     }
@@ -106,7 +106,7 @@ class CreateWork extends Component {
                     type="name"
                     name="name"
                     autoComplete="name"
-                    label="Comasany Name"
+                    label="Company Name"
                     variant="outlined"
                     onChange={this.handleChange}
                     required

@@ -14,8 +14,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const EducationSection = (props) => {
-  const { education } = props;
+const WorkSection = (props) => {
+  const { work } = props;
   const settings = {
     dots: true,
     infinite: false,
@@ -51,8 +51,17 @@ const EducationSection = (props) => {
     ],
   };
 
-  const EducationBox = ({ data }) => {
-    const { image, endYear, field, name, location } = data;
+  const WorkBox = ({ data }) => {
+    const {
+      image,
+      startDate,
+      endDate,
+      field,
+      name,
+      location,
+      role,
+      desc,
+    } = data;
     return (
       <div className="edu-box">
         <Card>
@@ -60,35 +69,36 @@ const EducationSection = (props) => {
             <Avatar alt="" src={image} className="edu-img" />
             <div className="block">
               <Typography component="h6" variant="h6">
-                {endYear} | {field}
+                {role} | {startDate} - {endDate}
               </Typography>
               <Typography variant="subtitle1">{name}</Typography>
               <Typography variant="subtitle2">{location}</Typography>
+              <Typography variant="p">{desc}</Typography>
             </div>
           </CardContent>
         </Card>
       </div>
     );
   };
-  const EducationSlider = (education) => {
+  const WorkSlider = (work) => {
     return (
       <Slider {...settings}>
-        {education &&
-          education.map((data, index) => {
-            return <EducationBox key={index} data={data} />;
+        {work &&
+          work.map((data, index) => {
+            return <WorkBox key={index} data={data} />;
           })}
       </Slider>
     );
   };
 
-  const EducationList = (education) => {
+  const WorkList = (work) => {
     return (
       <>
-        {education &&
-          education.map((data, index) => {
+        {work &&
+          work.map((data, index) => {
             return (
               <Grid key={index} item xs={12} sm={6}>
-                <EducationBox key={index} data={data} />
+                <WorkBox key={index} data={data} />
               </Grid>
             );
           })}
@@ -100,12 +110,12 @@ const EducationSection = (props) => {
     <>
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
-          Education
+          Work Experience
         </Typography>
       </Grid>
       <Grid container spacing={0}>
-        <Hidden only="xs">{EducationList(education)}</Hidden>
-        <Hidden smUp>{EducationSlider(education)}</Hidden>
+        <Hidden only="xs">{WorkList(work)}</Hidden>
+        <Hidden smUp>{WorkSlider(work)}</Hidden>
       </Grid>
     </>
   );
@@ -113,10 +123,10 @@ const EducationSection = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    education: state.firestore.ordered.education,
+    work: state.firestore.ordered.work,
   };
 };
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: "education", orderBy: ["endYear", "desc"] }])
-)(EducationSection);
+  firestoreConnect([{ collection: "work", orderBy: ["endDate", "desc"] }])
+)(WorkSection);

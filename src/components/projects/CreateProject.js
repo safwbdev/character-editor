@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createEducation } from "../../store/actions/eduActions";
+import { createProject } from "../../store/actions/projectActions";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import Resizer from "react-image-file-resizer";
@@ -22,10 +22,10 @@ class CreateEducation extends Component {
     this.fileChangedHandler = this.fileChangedHandler.bind(this);
     this.state = {
       image: null,
-      title: null,
-      desc: null,
-      github: null,
-      demo: null,
+      title: "",
+      desc: "",
+      github: "",
+      demo: "",
       projectType: null,
       getSkills: null,
       skillType: null,
@@ -66,8 +66,9 @@ class CreateEducation extends Component {
     if (this.state.image) {
       alert("UPLADED");
       console.log(this.state);
+      this.props.createProject(this.state);
       // props.createEducation(data, url, photoID);
-      // props.history.push("/");
+      this.props.history.push("/");
     } else {
       alert("Please upload an image.");
     }
@@ -230,8 +231,7 @@ class CreateEducation extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createEducation: (education, url, photoID) =>
-      dispatch(createEducation(education, url, photoID)),
+    createProject: (data) => dispatch(createProject(data)),
   };
 };
 // export default connect(null, mapDispatchToProps)(CreateProject);
