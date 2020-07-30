@@ -85,7 +85,7 @@ header a button span {
 }
 .edu-content {
   display: flex !important;
-  align-items: center;
+  /* align-items: center; */
 }
 .block {
   display: block !important;

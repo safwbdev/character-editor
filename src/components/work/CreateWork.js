@@ -22,7 +22,7 @@ class CreateWork extends Component {
       role: "",
       startDate: null,
       endDate: null,
-      desc: "",
+      desc: [],
     };
   }
 
@@ -48,6 +48,13 @@ class CreateWork extends Component {
   }
   handleChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
+  };
+  handleDesc = (e, index) => {
+    // this.state.desc[index] = e.target.value;
+  };
+
+  addDesc = () => {
+    this.setState({ desc: [...this.state.desc, ""] });
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -169,21 +176,31 @@ class CreateWork extends Component {
                     fullWidth
                   />
                 </Grid>
+                {this.state.desc.map((data, index) => {
+                  return (
+                    <Grid key={index} item xs={12}>
+                      <TextField
+                        id="desc"
+                        name="desc"
+                        label={"Desc " + index}
+                        type="text"
+                        variant="outlined"
+                        onChange={(e) => this.handleDesc(e, index)}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        required
+                        fullWidth
+                      />
+                    </Grid>
+                  );
+                })}
                 <Grid item xs={12}>
-                  <TextField
-                    id="desc"
-                    name="desc"
-                    type="desc"
-                    autoComplete="desc"
-                    label="Description"
-                    onChange={this.handleChange}
-                    multiline
-                    fullWidth
-                    required
-                    rows={4}
-                    variant="outlined"
-                  />
+                  <Button variant="contained" onClick={(e) => this.addDesc(e)}>
+                    Add Desc
+                  </Button>
                 </Grid>
+                {/* </Grid> */}
                 <Grid item xs={12} align="right">
                   <Button type="submit" variant="contained">
                     Submit

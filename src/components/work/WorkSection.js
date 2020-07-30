@@ -56,7 +56,7 @@ const WorkSection = (props) => {
       image,
       startDate,
       endDate,
-      field,
+      //   field,
       name,
       location,
       role,
@@ -73,7 +73,11 @@ const WorkSection = (props) => {
               </Typography>
               <Typography variant="subtitle1">{name}</Typography>
               <Typography variant="subtitle2">{location}</Typography>
-              <Typography variant="p">{desc}</Typography>
+              <ul>
+                {desc.map((data) => {
+                  return <li>{data}</li>;
+                })}
+              </ul>
             </div>
           </CardContent>
         </Card>
