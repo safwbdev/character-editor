@@ -14,6 +14,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import moment from "moment";
+import WorkDialog from "./WorkDialog";
 
 const WorkSection = (props) => {
   const { work } = props;
@@ -65,6 +66,9 @@ const WorkSection = (props) => {
                     return <li key={index}>{data}</li>;
                   })}
                 </ul>
+              </Hidden>
+              <Hidden smUp>
+                <WorkDialog name={name} tasks={desc} />
               </Hidden>
             </div>
           </CardContent>
