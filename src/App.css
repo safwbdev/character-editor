@@ -130,3 +130,7 @@ header a button span {
   padding-inline-start: 1em;
   line-height: 1.5em;
 }
+.work-slider .slick-slider,
+.edu-slider .slick-slider {
+  width: 100%;
+}

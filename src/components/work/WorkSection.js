@@ -18,38 +18,13 @@ import moment from "moment";
 const WorkSection = (props) => {
   const { work } = props;
   const settings = {
-    dots: true,
+    dots: false,
+    arrows: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    // slidesToScroll: 1,
-    // initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          //   slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
   };
 
   const getWorkDate = (date) => {
@@ -84,11 +59,13 @@ const WorkSection = (props) => {
                 {getWorkDate(startDate)} - {getWorkDate(endDate)}
               </Typography>
               <Typography variant="subtitle2">{location}</Typography>
-              <ul className="desc-list">
-                {desc.map((data, index) => {
-                  return <li key={index}>{data}</li>;
-                })}
-              </ul>
+              <Hidden only="xs">
+                <ul className="desc-list">
+                  {desc.map((data, index) => {
+                    return <li key={index}>{data}</li>;
+                  })}
+                </ul>
+              </Hidden>
             </div>
           </CardContent>
         </Card>
@@ -113,7 +90,7 @@ const WorkSection = (props) => {
         {work &&
           work.map((data, index) => {
             return (
-              <Grid key={index} item xs={12} sm={6}>
+              <Grid key={index} item xs={12} sm={12} md={6}>
                 <WorkBox key={index} data={data} />
               </Grid>
             );
@@ -126,10 +103,10 @@ const WorkSection = (props) => {
     <>
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
-          Work Experience
+          Work History
         </Typography>
       </Grid>
-      <Grid container spacing={0}>
+      <Grid container spacing={0} className="work-slider">
         <Hidden only="xs">{WorkList(work)}</Hidden>
         <Hidden smUp>{WorkSlider(work)}</Hidden>
       </Grid>

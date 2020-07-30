@@ -17,38 +17,13 @@ import "slick-carousel/slick/slick-theme.css";
 const EducationSection = (props) => {
   const { education } = props;
   const settings = {
-    dots: true,
+    dots: false,
+    arrows: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    // slidesToScroll: 1,
-    // initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          //   slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
   };
 
   const EducationBox = ({ data }) => {
@@ -103,7 +78,7 @@ const EducationSection = (props) => {
           Education
         </Typography>
       </Grid>
-      <Grid container spacing={0}>
+      <Grid container spacing={0} className="edu-slider">
         <Hidden only="xs">{EducationList(education)}</Hidden>
         <Hidden smUp>{EducationSlider(education)}</Hidden>
       </Grid>
