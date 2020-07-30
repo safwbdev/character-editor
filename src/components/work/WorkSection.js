@@ -13,6 +13,7 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import moment from "moment";
 
 const WorkSection = (props) => {
   const { work } = props;
@@ -51,6 +52,11 @@ const WorkSection = (props) => {
     ],
   };
 
+  const getWorkDate = (date) => {
+    const d = new Date(date);
+    const newDate = moment(d).format("MMM YYYY");
+    return newDate;
+  };
   const WorkBox = ({ data }) => {
     const {
       image,
@@ -69,13 +75,18 @@ const WorkSection = (props) => {
             <Avatar alt="" src={image} className="edu-img" />
             <div className="block">
               <Typography component="h6" variant="h6">
-                {role} | {startDate} - {endDate}
+                {role}
               </Typography>
-              <Typography variant="subtitle1">{name}</Typography>
+              <Typography variant="subtitle1" className="company">
+                {name}
+              </Typography>
+              <Typography variant="subtitle1" className="">
+                {getWorkDate(startDate)} - {getWorkDate(endDate)}
+              </Typography>
               <Typography variant="subtitle2">{location}</Typography>
-              <ul>
-                {desc.map((data) => {
-                  return <li>{data}</li>;
+              <ul className="desc-list">
+                {desc.map((data, index) => {
+                  return <li key={index}>{data}</li>;
                 })}
               </ul>
             </div>
@@ -84,6 +95,7 @@ const WorkSection = (props) => {
       </div>
     );
   };
+
   const WorkSlider = (work) => {
     return (
       <Slider {...settings}>

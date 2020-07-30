@@ -123,3 +123,10 @@ header a button span {
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
   width: 100% !important;
 }
+.company {
+  font-weight: bold !important;
+}
+.desc-list {
+  padding-inline-start: 1em;
+  line-height: 1.5em;
+}
