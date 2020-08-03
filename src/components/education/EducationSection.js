@@ -7,7 +7,7 @@ import {
   Typography,
   Card,
   CardContent,
-  Avatar,
+  // Avatar,
   Hidden,
 } from "@material-ui/core";
 import Slider from "react-slick";

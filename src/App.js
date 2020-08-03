@@ -11,6 +11,7 @@ import EditSkill from "./components/skills/EditSkill";
 import CreateEducation from "./components/education/CreateEducation";
 import EditEducation from "./components/education/EditEducation";
 import EditProject from "./components/projects/EditProject";
+import EditProfile from "./components/profile/EditProfile";
 import CreateWork from "./components/work/CreateWork";
 import { Hidden } from "@material-ui/core";
 import EditWork from "./components/work/EditWork";
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/create-skill" component={CreateSkill} />
             <Route exact path="/edit-skill/:id" component={EditSkill} />
             <Route exact path="/edit-work/:id" component={EditWork} />
+            <Route exact path="/edit-profile" component={EditProfile} />
             <Route exact path="/edit-education/:id" component={EditEducation} />
             <Route exact path="/edit-project/:id" component={EditProject} />
             <Route exact path="/create-education" component={CreateEducation} />

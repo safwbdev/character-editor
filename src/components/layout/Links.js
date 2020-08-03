@@ -9,6 +9,9 @@ const Navbar = () => {
       <NavLink to="/list">
         <Button>List</Button>
       </NavLink>
+      <NavLink to="/edit-profile">
+        <Button>Profile</Button>
+      </NavLink>
       <NavLink to="/create-project">
         <Button>
           <AddCircleIcon /> Project
