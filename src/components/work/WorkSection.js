@@ -48,7 +48,8 @@ const WorkSection = (props) => {
       <div className="edu-box">
         <Card>
           <CardContent className="edu-content">
-            <Avatar alt="" src={image} className="edu-img" />
+            {/* <Avatar alt="" src={image} className="edu-img" /> */}
+            <img alt="" src={image} className="edu-img" />
             <div className="block">
               <Typography component="h6" variant="h6">
                 {role}

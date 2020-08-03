@@ -32,10 +32,15 @@ const EducationSection = (props) => {
       <div className="edu-box">
         <Card>
           <CardContent className="edu-content">
-            <Avatar alt="" src={image} className="edu-img" />
+            {/* <Avatar alt="" src={image} className="edu-img" /> */}
+            <img alt="" src={image} className="edu-img" />
             <div className="block">
               <Typography component="h6" variant="h6">
-                {endYear} <i className="fas fa-graduation-cap "></i> {field}
+                {endYear} <i className="fas fa-graduation-cap "></i>
+                <Hidden smUp>
+                  <br />
+                </Hidden>
+                {field}
               </Typography>
               <Typography variant="subtitle1">{name}</Typography>
               <Typography variant="subtitle2">{location}</Typography>
