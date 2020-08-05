@@ -7,12 +7,14 @@ import ProfileSection from "../profile/ProfileSection";
 
 const Preview = () => {
   return (
-    <Container maxWidth="lg">
+    <>
       <ProfileSection />
-      <WorkSection />
-      <EducationSection />
-      <SkillSection />
-    </Container>
+      <Container maxWidth="lg">
+        <WorkSection />
+        <EducationSection />
+        <SkillSection />
+      </Container>
+    </>
   );
 };
 

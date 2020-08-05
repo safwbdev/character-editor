@@ -154,3 +154,78 @@ header a button span {
 .edu-slider .slick-slider {
   width: 100%;
 }
+
+.intro-section .profile-row img {
+  border-radius: 50%;
+  width: 90%;
+  box-shadow: 1px 2px 1px grey;
+}
+.detail-links a {
+  color: inherit;
+  text-decoration: none;
+}
+.detail-links a h6 {
+  /* font-weight: 600 !important; */
+}
+.desc-section {
+  background-image: url("https://safwbdev.netlify.app/static/media/desc_bg.25374c6a.jpeg");
+
+  padding: 0;
+  /* background: red; */
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.desc-section h6 {
+  color: #ffffff;
+  text-align: justify;
+  font-weight: 700;
+  text-shadow: 11px 1px 6px #000;
+}
+@media only screen and (min-width: 1201px) {
+  .intro-section {
+    height: 100vh;
+    width: 100vw;
+  }
+  .intro-section .profile-row {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  .desc-section {
+    /* background: red; */
+    position: absolute;
+    bottom: 0;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+  }
+}
+.intro-section .profile-row .titles h2 {
+  font-weight: 700;
+}
+.intro-section .profile-row .titles h3 {
+  font-style: italic;
+}
+@media screen and (device-width: 360px) and (device-height: 640px) {
+  .intro-section .profile-row {
+    text-align: center;
+  }
+  .intro-section .profile-row .MuiIconButton-root {
+    background: red;
+  }
+  .intro-section .profile-row .titles h2 {
+    font-size: 1.9rem !important;
+  }
+  .intro-section .profile-row .titles h3 {
+    font-size: 1.7rem !important;
+  }
+  .intro-section .profile-row img {
+    margin: 30px 0 0;
+    width: 60%;
+  }
+  .intro-section .desc-section {
+    padding: 20px;
+  }
+}
