@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import {
   Grid,
+  Container,
   Typography,
   Card,
   CardContent,
@@ -18,10 +19,10 @@ const EducationSection = (props) => {
   const { education } = props;
   const settings = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 1.2,
     slidesToScroll: 1,
     initialSlide: 0,
   };
@@ -83,10 +84,18 @@ const EducationSection = (props) => {
           Education
         </Typography>
       </Grid>
-      <Grid container spacing={0} className="edu-slider">
-        <Hidden only="xs">{EducationList(education)}</Hidden>
-        <Hidden smUp>{EducationSlider(education)}</Hidden>
-      </Grid>
+      <Hidden only="xs">
+        <Container maxWidth="lg">
+          <Grid container spacing={0} className="edu-slider">
+            {EducationList(education)}
+          </Grid>
+        </Container>
+      </Hidden>
+      <Hidden smUp>
+        <Grid container spacing={0} className="edu-slider">
+          {EducationSlider(education)}
+        </Grid>
+      </Hidden>
     </>
   );
 };

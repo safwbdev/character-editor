@@ -9,6 +9,7 @@ import {
   CardContent,
   // Avatar,
   Hidden,
+  Container,
 } from "@material-ui/core";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -20,10 +21,10 @@ const WorkSection = (props) => {
   const { work } = props;
   const settings = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 1.2,
     slidesToScroll: 1,
     initialSlide: 0,
   };
@@ -111,10 +112,19 @@ const WorkSection = (props) => {
           Work History
         </Typography>
       </Grid>
-      <Grid container spacing={0} className="work-slider">
-        <Hidden only="xs">{WorkList(work)}</Hidden>
-        <Hidden smUp>{WorkSlider(work)}</Hidden>
-      </Grid>
+      <Hidden only="xs">
+        <Container maxWidth="lg">
+          <Grid container spacing={0} className="work-slider">
+            {WorkList(work)}
+          </Grid>
+        </Container>
+      </Hidden>
+
+      <Hidden smUp>
+        <Grid container spacing={0} className="work-slider">
+          {WorkSlider(work)}
+        </Grid>
+      </Hidden>
     </>
   );
 };

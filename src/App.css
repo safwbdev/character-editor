@@ -112,7 +112,8 @@ header a button span {
     display: inline !important;
   }
   .edu-box .MuiCard-root {
-    background: grey;
+    /* background: grey; */
+    background: transparent;
   }
   .slick-track {
     display: flex !important;
@@ -155,6 +156,21 @@ header a button span {
   width: 100%;
 }
 
+.intro-section {
+  /* padding: 0 !important; */
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#0e1025),
+    to(#373447)
+  );
+  background-image: linear-gradient(0deg, #0e1025 0, #373447);
+  color: #ffffff;
+}
+.intro-section svg {
+  color: #ffffff;
+}
 .intro-section .profile-row img {
   border-radius: 50%;
   width: 90%;
@@ -227,5 +243,10 @@ header a button span {
   }
   .intro-section .desc-section {
     padding: 20px;
+  }
+  .slick-slide {
+    margin: 0 10px;
+    background: grey;
+    border-radius: 20px;
   }
 }

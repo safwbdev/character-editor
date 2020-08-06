@@ -9,9 +9,9 @@ const Preview = () => {
   return (
     <>
       <ProfileSection />
+      <WorkSection />
+      <EducationSection />
       <Container maxWidth="lg">
-        <WorkSection />
-        <EducationSection />
         <SkillSection />
       </Container>
     </>
