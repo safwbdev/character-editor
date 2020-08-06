@@ -40,7 +40,7 @@ const ProfileSection = ({ profile }) => {
             <Grid item xs={3} sm={6}>
               <a href={"mailto:" + email}>
                 <Typography variant="h6">
-                  <IconButton>
+                  <IconButton className="link-btn">
                     <EmailIcon />
                   </IconButton>
                   <Hidden only="xs">{email}</Hidden>
@@ -50,7 +50,7 @@ const ProfileSection = ({ profile }) => {
             <Grid item xs={3} sm={6}>
               <a href={tel}>
                 <Typography variant="h6">
-                  <IconButton>
+                  <IconButton className="link-btn">
                     <PhoneIcon />
                   </IconButton>
                   <Hidden only="xs">{tel}</Hidden>
@@ -60,24 +60,24 @@ const ProfileSection = ({ profile }) => {
             <Grid item xs={3} sm={6}>
               <a href={linkedin} target="_blank" rel="noopener noreferrer">
                 <Typography variant="h6">
-                  <IconButton>
+                  <IconButton className="link-btn">
                     <LinkedInIcon />
                   </IconButton>
-                  <Hidden only="xs">Visit my LinkedIn</Hidden>
+                  <Hidden only="xs">Visit My LinkedIn</Hidden>
                 </Typography>
               </a>
             </Grid>
             <Grid item xs={3} sm={6}>
               <a href={github} target="_blank" rel="noopener noreferrer">
                 <Typography variant="h6">
-                  <IconButton>
+                  <IconButton className="link-btn">
                     <GitHubIcon />
                   </IconButton>
-                  <Hidden only="xs">Checkout my Github</Hidden>
+                  <Hidden only="xs">Check Out My Github</Hidden>
                 </Typography>
               </a>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} className="location">
               <Typography variant="h6">
                 <IconButton>
                   <LocationOnIcon />

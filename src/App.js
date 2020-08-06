@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Navbar from "./components/layout/Navbar";
+// import Navbar from "./components/layout/Navbar";
 import Dashboard from "./components/dashboard/Dashboard";
 import Preview from "./components/dashboard/Preview";
 import CreateProject from "./components/projects/CreateProject";
@@ -13,7 +13,7 @@ import EditEducation from "./components/education/EditEducation";
 import EditProject from "./components/projects/EditProject";
 import EditProfile from "./components/profile/EditProfile";
 import CreateWork from "./components/work/CreateWork";
-import { Hidden } from "@material-ui/core";
+// import { Hidden } from "@material-ui/core";
 import EditWork from "./components/work/EditWork";
 
 class App extends Component {
@@ -21,9 +21,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Hidden only="xs">
+          {/* <Hidden only="xs">
             <Navbar />
-          </Hidden>
+          </Hidden> */}
           <Switch>
             <Route exact path="/" component={Preview} />
             <Route exact path="/list" component={Dashboard} />

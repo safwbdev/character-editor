@@ -36,6 +36,10 @@
     transform: rotate(360deg);
   }
 } */
+body {
+  background: #302e30;
+  color: #ffffff;
+}
 .MuiChip-root {
   margin: 0.5em;
 }
@@ -95,7 +99,19 @@ header a button span {
 .MuiPaper-elevation1 {
   box-shadow: none !important;
 }
+.edu-box .MuiCard-root {
+  background: transparent;
+  color: #ffffff;
+}
+.task-button {
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
 @media screen and (device-width: 360px) and (device-height: 640px) {
+  .edu-box .MuiCard-root {
+    background: #000000;
+  }
   .edu-content {
     display: block !important;
     text-align: center !important;
@@ -111,10 +127,7 @@ header a button span {
   .slick-slide img {
     display: inline !important;
   }
-  .edu-box .MuiCard-root {
-    /* background: grey; */
-    background: transparent;
-  }
+
   .slick-track {
     display: flex !important;
   }
@@ -157,7 +170,6 @@ header a button span {
 }
 
 .intro-section {
-  /* padding: 0 !important; */
   background-image: -webkit-gradient(
     linear,
     left bottom,
@@ -180,9 +192,6 @@ header a button span {
   color: inherit;
   text-decoration: none;
 }
-.detail-links a h6 {
-  /* font-weight: 600 !important; */
-}
 .desc-section {
   background-image: url("https://safwbdev.netlify.app/static/media/desc_bg.25374c6a.jpeg");
 
@@ -202,7 +211,7 @@ header a button span {
 @media only screen and (min-width: 1201px) {
   .intro-section {
     height: 100vh;
-    width: 100vw;
+    /* width: 100vw; */
   }
   .intro-section .profile-row {
     height: 60vh;
@@ -218,6 +227,9 @@ header a button span {
     align-items: center;
   }
 }
+.intro-section .profile-row .titles {
+  margin-bottom: 2em;
+}
 .intro-section .profile-row .titles h2 {
   font-weight: 700;
 }
@@ -227,15 +239,37 @@ header a button span {
 @media screen and (device-width: 360px) and (device-height: 640px) {
   .intro-section .profile-row {
     text-align: center;
+    padding-top: 2em;
   }
-  .intro-section .profile-row .MuiIconButton-root {
-    background: red;
+  .intro-section .profile-row .titles {
+    margin: 2em 0;
+  }
+  .intro-section .profile-row .titles h2 {
+    margin-bottom: 0.6em;
+  }
+  .intro-section .profile-row .link-btn {
+    background: #ffffff;
+  }
+  .intro-section .profile-row .link-btn svg {
+    color: #373447;
   }
   .intro-section .profile-row .titles h2 {
     font-size: 1.9rem !important;
   }
   .intro-section .profile-row .titles h3 {
     font-size: 1.7rem !important;
+  }
+  .intro-section .profile-row {
+    height: 100vh;
+  }
+  .intro-section .profile-row .location {
+    margin-top: 2em;
+  }
+
+  .desc-section {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
   }
   .intro-section .profile-row img {
     margin: 30px 0 0;
@@ -246,7 +280,22 @@ header a button span {
   }
   .slick-slide {
     margin: 0 10px;
-    background: grey;
-    border-radius: 20px;
+    background: #000000;
+    /* border-radius: 20px; */
   }
+  .task-dialogbox .MuiDialog-paper {
+    border: 1px solid #ffffff;
+    background: #000000;
+    color: #ffffff;
+  }
+  .task-dialogbox .MuiDialog-paper .MuiDialogTitle-root h2 {
+    /* border-bottom: 1px solid #ffffff; */
+    font-weight: 700 !important;
+    text-align: center;
+  }
+}
+.skill-section,
+.work-section,
+.education-section {
+  padding: 2em 0;
 }

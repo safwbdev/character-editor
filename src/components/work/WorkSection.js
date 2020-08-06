@@ -70,6 +70,7 @@ const WorkSection = (props) => {
                 </ul>
               </Hidden>
               <Hidden smUp>
+                <br />
                 <WorkDialog name={name} tasks={desc} />
               </Hidden>
             </div>
@@ -106,7 +107,7 @@ const WorkSection = (props) => {
   };
 
   return (
-    <>
+    <div className="work-section">
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
           Work History
@@ -125,7 +126,7 @@ const WorkSection = (props) => {
           {WorkSlider(work)}
         </Grid>
       </Hidden>
-    </>
+    </div>
   );
 };
 

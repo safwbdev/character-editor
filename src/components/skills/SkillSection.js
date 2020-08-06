@@ -4,7 +4,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
+import { Grid, Container } from "@material-ui/core";
 
 const SkillSection = (props) => {
   const { skills } = props;
@@ -51,24 +51,26 @@ const SkillSection = (props) => {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} className="skill-box">
-        <Typography variant="h4" component="h4">
-          Skills
-        </Typography>
+    <Container maxWidth="lg" className="skill-section">
+      <Grid container spacing={2}>
+        <Grid item xs={12} className="skill-box">
+          <Typography variant="h4" component="h4">
+            Skills
+          </Typography>
+        </Grid>
+        {skillArray &&
+          skillArray.map((data, index) => {
+            return (
+              <ShowSkills
+                key={index}
+                title={data.title}
+                skillType={data.type}
+                styleCclass={data.type}
+              />
+            );
+          })}
       </Grid>
-      {skillArray &&
-        skillArray.map((data, index) => {
-          return (
-            <ShowSkills
-              key={index}
-              title={data.title}
-              skillType={data.type}
-              styleCclass={data.type}
-            />
-          );
-        })}
-    </Grid>
+    </Container>
   );
 };
 

@@ -8,7 +8,6 @@ import {
   Typography,
   Card,
   CardContent,
-  // Avatar,
   Hidden,
 } from "@material-ui/core";
 import Slider from "react-slick";
@@ -33,11 +32,10 @@ const EducationSection = (props) => {
       <div className="edu-box">
         <Card>
           <CardContent className="edu-content">
-            {/* <Avatar alt="" src={image} className="edu-img" /> */}
             <img alt="" src={image} className="edu-img" />
             <div className="block">
               <Typography component="h6" variant="h6">
-                {endYear} <i className="fas fa-graduation-cap "></i>
+                {endYear} <i className="fas fa-graduation-cap "></i>{" "}
                 <Hidden smUp>
                   <br />
                 </Hidden>
@@ -78,7 +76,7 @@ const EducationSection = (props) => {
   };
 
   return (
-    <>
+    <div className="education-section">
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
           Education
@@ -96,7 +94,7 @@ const EducationSection = (props) => {
           {EducationSlider(education)}
         </Grid>
       </Hidden>
-    </>
+    </div>
   );
 };
 

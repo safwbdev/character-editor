@@ -16,9 +16,14 @@ function SimpleDialog(props) {
     <Dialog
       onClose={handleClose}
       aria-labelledby="simple-dialog-title"
+      className="task-dialogbox"
       open={open}
     >
-      <DialogTitle id="simple-dialog-title">Tasks at {name}</DialogTitle>
+      <DialogTitle id="simple-dialog-title">
+        Tasks at
+        <br />
+        {name}
+      </DialogTitle>
       <DialogContent>
         <ul className="desc-list">
           {tasks.map((data, index) => {
@@ -50,7 +55,12 @@ const SimpleDialogDemo = ({ name, tasks }) => {
   };
   return (
     <>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        variant="outlined"
+        color="primary"
+        className="task-button"
+        onClick={handleClickOpen}
+      >
         View Tasks
       </Button>
       <SimpleDialog
