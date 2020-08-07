@@ -90,7 +90,8 @@ header a button span {
   border-radius: 50%;
   box-shadow: 1px 1px 6px grey;
 }
-.edu-content .work-content {
+.edu-content,
+.work-content {
   display: flex !important;
   /* align-items: center; */
 }

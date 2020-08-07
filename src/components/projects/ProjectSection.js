@@ -20,6 +20,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: "95%",
     maxHeight: "inherit",
+    height: "inherit",
   },
   media: {
     height: 300,
@@ -56,7 +57,12 @@ const ProjectSection = ({ getData, getType, getTitle }) => {
       },
       {
         breakpoint: 480,
-        settings: { arrows: true, slidesToShow: 1.2, slidesToScroll: 1 },
+        settings: {
+          arrows: true,
+          slidesToShow: 1.2,
+          slidesToScroll: 1,
+          arrows: false,
+        },
       },
     ],
   };
@@ -85,7 +91,11 @@ const ProjectSection = ({ getData, getType, getTitle }) => {
       },
       {
         breakpoint: 480,
-        settings: { arrows: false, slidesToShow: 1.2, slidesToScroll: 1 },
+        settings: {
+          arrows: false,
+          slidesToShow: 1.2,
+          slidesToScroll: 1,
+        },
       },
     ],
   };
@@ -153,7 +163,7 @@ const ProjectSection = ({ getData, getType, getTitle }) => {
   };
 
   return (
-    <div className="education-section">
+    <div className="project-section">
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
           {getTitle}
