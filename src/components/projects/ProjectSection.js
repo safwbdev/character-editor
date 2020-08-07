@@ -58,7 +58,6 @@ const ProjectSection = ({ getData, getType, getTitle }) => {
       {
         breakpoint: 480,
         settings: {
-          arrows: true,
           slidesToShow: 1.2,
           slidesToScroll: 1,
           arrows: false,
@@ -170,7 +169,7 @@ const ProjectSection = ({ getData, getType, getTitle }) => {
         </Typography>
       </Grid>
       <Container maxWidth="lg">
-        <Grid container spacing={0} className="edu-slider">
+        <Grid container spacing={0} className="project-slider">
           {ProjectSlider(getData)}
         </Grid>
       </Container>

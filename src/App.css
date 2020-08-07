@@ -170,6 +170,7 @@ header a button span {
   padding-inline-start: 1em;
   line-height: 1.5em;
 }
+.project-slider .slick-slider,
 .edu-slider .slick-slider,
 .work-slider .slick-slider {
   width: 100%;
@@ -288,6 +289,10 @@ header a button span {
     background: #000000;
     /* border-radius: 20px; */
   }
+  .project-slider .slick-slide {
+    margin: 0;
+    background: transparent;
+  }
   .task-dialogbox .MuiDialog-paper {
     border: 1px solid #ffffff;
     background: #000000;
@@ -297,6 +302,9 @@ header a button span {
     /* border-bottom: 1px solid #ffffff; */
     font-weight: 700 !important;
     text-align: center;
+  }
+  .project-section .MuiContainer-root {
+    padding: 0;
   }
 }
 .work-section {
