@@ -32,16 +32,8 @@ const useStyles = makeStyles({
   },
 });
 
-const ProjectSection = (props) => {
-  const { education } = props;
+const ProjectSection = ({ getData }) => {
   const settings = {
-    // dots: false,
-    // arrows: false,
-    // infinite: false,
-    // speed: 500,
-    // slidesToShow: 2,
-    // slidesToScroll: 1,
-    // initialSlide: 0,
     dots: true,
     infinite: false,
     speed: 300,
@@ -115,11 +107,11 @@ const ProjectSection = (props) => {
       </Card>
     );
   };
-  const ProjectSlider = (education) => {
+  const ProjectSlider = (projectData) => {
     return (
       <Slider {...settings}>
-        {education &&
-          education.map((data, index) => {
+        {projectData &&
+          projectData.map((data, index) => {
             return <ProjectBox key={index} data={data} />;
           })}
       </Slider>
@@ -135,29 +127,11 @@ const ProjectSection = (props) => {
       </Grid>
       <Container maxWidth="lg">
         <Grid container spacing={0} className="edu-slider">
-          {ProjectSlider(education)}
+          {ProjectSlider(getData)}
         </Grid>
       </Container>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  const getProjects = state.firestore.ordered.projects;
-  let projects = [];
-  getProjects &&
-    getProjects.map((data) => {
-      if (data.projectType === "client") {
-        projects.push(data);
-        return null;
-      }
-      return null;
-    });
-  return {
-    education: projects,
-  };
-};
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: "projects" }])
-)(ProjectSection);
+export default ProjectSection;

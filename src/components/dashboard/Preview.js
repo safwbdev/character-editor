@@ -3,20 +3,63 @@ import SkillSection from "../skills/SkillSection";
 import EducationSection from "../education/EducationSection";
 import WorkSection from "../work/WorkSection";
 import ProfileSection from "../profile/ProfileSection";
-import ClientProjectSection from "../projects/ClientProjectSection";
-import PersonalProjectSection from "../projects/PersonalProjectSection";
+// import ClientProjectSection from "../projects/ClientProjectSection";
+import ProjectSection from "../projects/ProjectSection";
+import { firestoreConnect } from "react-redux-firebase";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-const Preview = () => {
-  return (
-    <>
-      <ProfileSection />
-      <ClientProjectSection />
-      <PersonalProjectSection />
-      <SkillSection />
-      <WorkSection />
-      <EducationSection />
-    </>
-  );
+const Preview = ({ clientProjects, personalProjects }) => {
+  if (personalProjects) {
+    return (
+      <>
+        <ProfileSection />
+        {/* <ClientProjectSection getData={clientProjects} /> */}
+        <ProjectSection
+          getType="client"
+          getTitle="Client Projects"
+          getData={clientProjects}
+        />
+        <ProjectSection
+          getType="personal"
+          getTitle="Personal Projects"
+          getData={personalProjects}
+        />
+        <SkillSection />
+        <WorkSection />
+        <EducationSection />
+      </>
+    );
+  } else {
+    return <h1>LOADING</h1>;
+  }
 };
 
-export default Preview;
+// export default Preview;
+
+const mapStateToProps = (state) => {
+  const getProjects = state.firestore.ordered.projects;
+  let clientProjects = [];
+  let personalProjects = [];
+  getProjects &&
+    getProjects.map((data) => {
+      if (data.projectType === "client") {
+        clientProjects.push(data);
+        return null;
+      }
+      if (data.projectType === "personal") {
+        personalProjects.push(data);
+        return null;
+      }
+      return null;
+    });
+  return {
+    clientProjects: clientProjects,
+    personalProjects: personalProjects,
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "projects" }])
+)(Preview);

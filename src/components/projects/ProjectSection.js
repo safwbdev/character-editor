@@ -1,7 +1,4 @@
 import React from "react";
-import { firestoreConnect } from "react-redux-firebase";
-import { connect } from "react-redux";
-import { compose } from "redux";
 import {
   Grid,
   Container,
@@ -32,9 +29,9 @@ const useStyles = makeStyles({
   },
 });
 
-const ProjectSection = (props) => {
-  const { education } = props;
-  const settings = {
+const ProjectSection = ({ getData, getType, getTitle }) => {
+  let settings;
+  const personalSettings = {
     dots: true,
     infinite: false,
     speed: 300,
@@ -63,6 +60,42 @@ const ProjectSection = (props) => {
       },
     ],
   };
+  const clientSettings = {
+    dots: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: { arrows: false, slidesToShow: 1.2, slidesToScroll: 1 },
+      },
+    ],
+  };
+
+  if (getType === "personal") {
+    settings = personalSettings;
+  }
+  if (getType === "client") {
+    settings = clientSettings;
+  }
 
   const ProjectBox = ({ data }) => {
     const { image, title, desc, skillType, demo, github } = data;
@@ -108,11 +141,11 @@ const ProjectSection = (props) => {
       </Card>
     );
   };
-  const ProjectSlider = (education) => {
+  const ProjectSlider = (projectData) => {
     return (
       <Slider {...settings}>
-        {education &&
-          education.map((data, index) => {
+        {projectData &&
+          projectData.map((data, index) => {
             return <ProjectBox key={index} data={data} />;
           })}
       </Slider>
@@ -123,34 +156,16 @@ const ProjectSection = (props) => {
     <div className="education-section">
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
-          Personal Projects
+          {getTitle}
         </Typography>
       </Grid>
       <Container maxWidth="lg">
         <Grid container spacing={0} className="edu-slider">
-          {ProjectSlider(education)}
+          {ProjectSlider(getData)}
         </Grid>
       </Container>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  const getProjects = state.firestore.ordered.projects;
-  let projects = [];
-  getProjects &&
-    getProjects.map((data) => {
-      if (data.projectType === "personal") {
-        projects.push(data);
-        return null;
-      }
-      return null;
-    });
-  return {
-    education: projects,
-  };
-};
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: "projects" }])
-)(ProjectSection);
+export default ProjectSection;
