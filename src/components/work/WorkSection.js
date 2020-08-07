@@ -46,11 +46,11 @@ const WorkSection = (props) => {
       desc,
     } = data;
     return (
-      <div className="edu-box">
+      <div className="work-box">
         <Card>
-          <CardContent className="edu-content">
+          <CardContent className="work-content">
             {/* <Avatar alt="" src={image} className="edu-img" /> */}
-            <img alt="" src={image} className="edu-img" />
+            <img alt="" src={image} className="work-img" />
             <div className="block">
               <Typography component="h6" variant="h6">
                 {role}
@@ -137,5 +137,5 @@ const mapStateToProps = (state) => {
 };
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: "work", orderBy: ["endDate", "desc"] }])
+  firestoreConnect([{ collection: "work", orderBy: ["startDate", "desc"] }])
 )(WorkSection);

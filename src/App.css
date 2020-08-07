@@ -82,14 +82,15 @@ header a button span {
   color: #ffffff;
   text-decoration: none;
 }
-.edu-img {
+.edu-img,
+.work-img {
   width: 4em !important;
   height: 4em !important;
   margin-right: 1em;
   border-radius: 50%;
   box-shadow: 1px 1px 6px grey;
 }
-.edu-content {
+.edu-content .work-content {
   display: flex !important;
   /* align-items: center; */
 }
@@ -99,7 +100,8 @@ header a button span {
 .MuiPaper-elevation1 {
   box-shadow: none !important;
 }
-.edu-box .MuiCard-root {
+.edu-box .MuiCard-root,
+.work-box .MuiCard-root {
   background: transparent;
   color: #ffffff;
 }
@@ -109,14 +111,17 @@ header a button span {
   font-weight: 700 !important;
 }
 @media screen and (device-width: 360px) and (device-height: 640px) {
-  .edu-box .MuiCard-root {
+  .edu-box .MuiCard-root,
+  .work-box .MuiCard-root {
     background: #000000;
   }
-  .edu-content {
+  .edu-content,
+  .work-content {
     display: block !important;
     text-align: center !important;
   }
-  .edu-img {
+  .edu-img,
+  .work-img {
     margin: unset !important;
     text-align: center !important;
     width: 50% !important;
@@ -164,8 +169,8 @@ header a button span {
   padding-inline-start: 1em;
   line-height: 1.5em;
 }
-.work-slider .slick-slider,
-.edu-slider .slick-slider {
+.edu-slider .slick-slider,
+.work-slider .slick-slider {
   width: 100%;
 }
 
@@ -204,14 +209,13 @@ header a button span {
 }
 .desc-section h6 {
   color: #ffffff;
-  text-align: justify;
+  text-align: center;
   font-weight: 700;
   text-shadow: 11px 1px 6px #000;
 }
 @media only screen and (min-width: 1201px) {
   .intro-section {
     height: 100vh;
-    /* width: 100vw; */
   }
   .intro-section .profile-row {
     height: 60vh;
@@ -293,6 +297,17 @@ header a button span {
     font-weight: 700 !important;
     text-align: center;
   }
+}
+.work-section {
+  /* background: red; */
+  /* background-image: url("https://images.pexels.com/photos/450035/pexels-photo-450035.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); */
+
+  padding: 0;
+  /* background: red; */
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .skill-section,
 .work-section,
