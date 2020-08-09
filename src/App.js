@@ -21,9 +21,9 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Hidden only="xs">
+          {/* <Hidden only="xs">
             <Navbar />
-          </Hidden>
+          </Hidden> */}
           <Switch>
             <Route exact path="/" component={Preview} />
             <Route exact path="/list" component={Dashboard} />

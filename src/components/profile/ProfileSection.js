@@ -28,16 +28,16 @@ const ProfileSection = ({ profile }) => {
   }) => {
     return (
       <>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={12} md={3} className="profile-image">
           <img src={image} alt="" className="profile" />
         </Grid>
-        <Grid item xs={12} sm={9}>
+        <Grid item xs={12} sm={12} md={9}>
           <Grid container className="detail-links">
             <Grid item xs={12} className="titles">
               <Typography variant="h2">{name}</Typography>
               <Typography variant="h3">{role}</Typography>
             </Grid>
-            <Grid item xs={3} sm={6}>
+            <Grid item xs={3} sm={6} md={6}>
               <a href={"mailto:" + email}>
                 <Typography variant="h6">
                   <IconButton className="link-btn">
@@ -47,7 +47,7 @@ const ProfileSection = ({ profile }) => {
                 </Typography>
               </a>
             </Grid>
-            <Grid item xs={3} sm={6}>
+            <Grid item xs={3} sm={6} md={6}>
               <a href={tel}>
                 <Typography variant="h6">
                   <IconButton className="link-btn">
@@ -57,7 +57,7 @@ const ProfileSection = ({ profile }) => {
                 </Typography>
               </a>
             </Grid>
-            <Grid item xs={3} sm={6}>
+            <Grid item xs={3} sm={6} md={6}>
               <a href={linkedin} target="_blank" rel="noopener noreferrer">
                 <Typography variant="h6">
                   <IconButton className="link-btn">
@@ -67,7 +67,7 @@ const ProfileSection = ({ profile }) => {
                 </Typography>
               </a>
             </Grid>
-            <Grid item xs={3} sm={6}>
+            <Grid item xs={3} sm={6} md={6}>
               <a href={github} target="_blank" rel="noopener noreferrer">
                 <Typography variant="h6">
                   <IconButton className="link-btn">
@@ -77,7 +77,7 @@ const ProfileSection = ({ profile }) => {
                 </Typography>
               </a>
             </Grid>
-            <Grid item xs={12} className="location">
+            <Grid item xs={12} sm={12} md={12} className="location">
               <Typography variant="h6">
                 <IconButton>
                   <LocationOnIcon />

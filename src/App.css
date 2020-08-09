@@ -323,3 +323,61 @@ header a button span {
 .education-section {
   padding: 2em 0;
 }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  .titles {
+    border: 1px solid blue !important;
+  }
+  .intro-section {
+    height: 100vh;
+  }
+  .intro-section .profile-row {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  .desc-section {
+    /* background: red; */
+    position: absolute;
+    bottom: 0;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+  }
+  .intro-section .profile-row .profile-image {
+    text-align: center;
+  }
+  .intro-section .profile-row .profile-image img {
+    margin: 0 0 30px;
+    width: 90%;
+  }
+}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .titles {
+    border: 1px solid red !important;
+    text-align: center;
+  }
+
+  .intro-section {
+    height: 100vh;
+  }
+  .intro-section .profile-row {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+  .desc-section {
+    /* background: red; */
+    position: absolute;
+    bottom: 0;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+  }
+  .intro-section .profile-row .profile-image {
+    text-align: center;
+  }
+  .intro-section .profile-row .profile-image img {
+    margin: 0 0 30px;
+    width: 30%;
+  }
+}
