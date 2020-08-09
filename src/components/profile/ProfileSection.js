@@ -36,6 +36,14 @@ const ProfileSection = ({ profile }) => {
             <Grid item xs={12} className="titles">
               <Typography variant="h2">{name}</Typography>
               <Typography variant="h3">{role}</Typography>
+              <Hidden smUp>
+                <Typography variant="h6">
+                  <IconButton>
+                    <LocationOnIcon />
+                  </IconButton>
+                  {location}
+                </Typography>
+              </Hidden>
             </Grid>
             <Grid item xs={3} sm={6} md={6}>
               <a href={"mailto:" + email}>
@@ -77,14 +85,16 @@ const ProfileSection = ({ profile }) => {
                 </Typography>
               </a>
             </Grid>
-            <Grid item xs={12} sm={12} md={12} className="location">
-              <Typography variant="h6">
-                <IconButton>
-                  <LocationOnIcon />
-                </IconButton>
-                {location}
-              </Typography>
-            </Grid>
+            <Hidden only="xs">
+              <Grid item xs={12} sm={12} md={12} className="location">
+                <Typography variant="h6">
+                  <IconButton>
+                    <LocationOnIcon />
+                  </IconButton>
+                  {location}
+                </Typography>
+              </Grid>
+            </Hidden>
           </Grid>
         </Grid>
       </>

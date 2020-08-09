@@ -142,7 +142,9 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
         <CardActions>
           {demo ? (
             <a href={demo}>
-              <Button variant="contained">Demo</Button>
+              <Button variant="contained">
+                {getType === "personal" ? "Demo" : "Visit Site"}
+              </Button>
             </a>
           ) : null}
           {github ? (

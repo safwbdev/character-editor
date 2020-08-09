@@ -353,6 +353,17 @@ header a button span {
   .intro-section .desc-section {
     padding: 20px;
   }
+
+  .work-slider.MuiGrid-container,
+  .edu-slider.MuiGrid-container {
+    padding: 0 0 0 15px;
+  }
+  /* .project-section .MuiContainer-root {
+    padding: 0;
+  } */
+  /* .project-section .MuiContainer-root .project-slider {
+    padding: 0 0 0 15px;
+  } */
 }
 .work-section {
   /* background: red; */
