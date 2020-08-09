@@ -46,16 +46,6 @@ const ProfileSection = ({ profile }) => {
               </Hidden>
             </Grid>
             <Grid item xs={3} sm={6} md={6}>
-              <a href={"mailto:" + email}>
-                <Typography variant="h6">
-                  <IconButton className="link-btn">
-                    <EmailIcon />
-                  </IconButton>
-                  <Hidden only="xs">{email}</Hidden>
-                </Typography>
-              </a>
-            </Grid>
-            <Grid item xs={3} sm={6} md={6}>
               <a href={tel}>
                 <Typography variant="h6">
                   <IconButton className="link-btn">
@@ -66,12 +56,12 @@ const ProfileSection = ({ profile }) => {
               </a>
             </Grid>
             <Grid item xs={3} sm={6} md={6}>
-              <a href={linkedin} target="_blank" rel="noopener noreferrer">
+              <a href={"mailto:" + email}>
                 <Typography variant="h6">
                   <IconButton className="link-btn">
-                    <LinkedInIcon />
+                    <EmailIcon />
                   </IconButton>
-                  <Hidden only="xs">Visit My LinkedIn</Hidden>
+                  <Hidden only="xs">{email}</Hidden>
                 </Typography>
               </a>
             </Grid>
@@ -82,6 +72,16 @@ const ProfileSection = ({ profile }) => {
                     <GitHubIcon />
                   </IconButton>
                   <Hidden only="xs">Check Out My Github</Hidden>
+                </Typography>
+              </a>
+            </Grid>
+            <Grid item xs={3} sm={6} md={6}>
+              <a href={linkedin} target="_blank" rel="noopener noreferrer">
+                <Typography variant="h6">
+                  <IconButton className="link-btn">
+                    <LinkedInIcon />
+                  </IconButton>
+                  <Hidden only="xs">Visit My LinkedIn</Hidden>
                 </Typography>
               </a>
             </Grid>

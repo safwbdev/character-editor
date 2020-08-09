@@ -175,17 +175,26 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
           {getType === "personal" ? "(" + getData.length + ")" : null}
         </Typography>
       </Grid>
-      <Container maxWidth="lg">
+      <Hidden only="xs">
+        <Container maxWidth="lg">
+          <Grid container spacing={0} className="project-slider">
+            {ProjectSlider(getData)}
+          </Grid>
+        </Container>
+      </Hidden>
+      <Hidden smUp>
         <Grid container spacing={0} className="project-slider">
           {ProjectSlider(getData)}
         </Grid>
-        <Grid container spacing={4} className="project-slider">
-          <Grid item xs={12} />
-          <Grid item xs={12} align="center">
-            <Typography variant="body2">{getSubtitle}</Typography>
-          </Grid>
+      </Hidden>
+      <Grid container>
+        <Grid item xs={12} />
+        <br />
+        <br />
+        <Grid item xs={12} align="center">
+          <Typography variant="body2">{getSubtitle}</Typography>
         </Grid>
-      </Container>
+      </Grid>
     </div>
   );
 };
