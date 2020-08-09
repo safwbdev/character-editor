@@ -361,9 +361,9 @@ header a button span {
   /* .project-section .MuiContainer-root {
     padding: 0;
   } */
-  /* .project-section .MuiContainer-root .project-slider {
+  .project-section .project-slider {
     padding: 0 0 0 15px;
-  } */
+  }
 }
 .work-section {
   /* background: red; */
