@@ -104,6 +104,7 @@ header a button span {
 .edu-box .MuiCard-root,
 .work-box .MuiCard-root {
   background: transparent;
+
   color: #ffffff;
 }
 .task-button {
@@ -111,10 +112,12 @@ header a button span {
   color: #ffffff !important;
   font-weight: 700 !important;
 }
-@media screen and (device-width: 360px) and (device-height: 640px) {
+/* @media screen and (device-width: 360px) and (device-height: 640px) { */
+@media screen and (device-width: 360px) {
   .edu-box .MuiCard-root,
   .work-box .MuiCard-root {
     background: #000000;
+    width: 95%;
   }
   .edu-content,
   .work-content {
@@ -242,7 +245,7 @@ header a button span {
 .intro-section .profile-row .titles h3 {
   font-style: italic;
 }
-@media screen and (device-width: 360px) and (device-height: 640px) {
+@media screen and (device-width: 480px) and (device-height: 640px) {
   .intro-section .profile-row {
     text-align: center;
     padding-top: 2em;
@@ -305,6 +308,50 @@ header a button span {
   }
   .project-section .MuiContainer-root {
     padding: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .intro-section .profile-row {
+    text-align: center;
+    padding-top: 2em;
+  }
+  .intro-section .profile-row .titles {
+    margin: 2em 0;
+  }
+  .intro-section .profile-row .titles h2 {
+    margin-bottom: 0.6em;
+  }
+  .intro-section .profile-row .link-btn {
+    background: #ffffff;
+  }
+  .intro-section .profile-row .link-btn svg {
+    color: #373447;
+  }
+  .intro-section .profile-row .titles h2 {
+    font-size: 1.9rem !important;
+  }
+  .intro-section .profile-row .titles h3 {
+    font-size: 1.7rem !important;
+  }
+  .intro-section .profile-row {
+    height: 100vh;
+  }
+  .intro-section .profile-row .location {
+    margin-top: 2em;
+  }
+
+  .desc-section {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .intro-section .profile-row img {
+    margin: 30px 0 0;
+    width: 60%;
+  }
+  .intro-section .desc-section {
+    padding: 20px;
   }
 }
 .work-section {

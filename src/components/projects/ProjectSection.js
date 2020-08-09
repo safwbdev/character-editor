@@ -10,6 +10,7 @@ import {
   CardActions,
   makeStyles,
   CardContent,
+  Hidden,
   //   Hidden,
 } from "@material-ui/core";
 import Slider from "react-slick";
@@ -129,7 +130,10 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
             skillType.map((data, index) => {
               const content = (
                 <span>
-                  <i className={data.icon}></i> <>{data.name}</>
+                  <Hidden only="xs">
+                    <i className={data.icon}></i>
+                  </Hidden>{" "}
+                  <>{data.name}</>
                 </span>
               );
               return <Chip key={index} size="medium" label={content}></Chip>;
