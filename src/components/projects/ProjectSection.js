@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ProjectSection = ({ getData, getType, getTitle }) => {
+const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
   let settings;
   const personalSettings = {
     dots: true,
@@ -165,12 +165,19 @@ const ProjectSection = ({ getData, getType, getTitle }) => {
     <div className="project-section">
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
-          {getTitle}
+          {getTitle}{" "}
+          {getType === "personal" ? "(" + getData.length + ")" : null}
         </Typography>
       </Grid>
       <Container maxWidth="lg">
         <Grid container spacing={0} className="project-slider">
           {ProjectSlider(getData)}
+        </Grid>
+        <Grid container spacing={4} className="project-slider">
+          <Grid item xs={12} />
+          <Grid item xs={12} align="center">
+            <Typography variant="body2">{getSubtitle}</Typography>
+          </Grid>
         </Grid>
       </Container>
     </div>

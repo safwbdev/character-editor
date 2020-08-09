@@ -39,11 +39,12 @@ class CreateSkill extends Component {
     });
   };
 
-  onSubmit = (e) => {
+  // onSubmit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
-    // this.props.createSkill(data);
-    // this.props.history.push("/");
+    this.props.createSkill(this.state);
+    this.props.history.push("/");
   };
 
   render() {

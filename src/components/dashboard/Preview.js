@@ -14,15 +14,16 @@ const Preview = ({ clientProjects, personalProjects }) => {
     return (
       <>
         <ProfileSection />
-        {/* <ClientProjectSection getData={clientProjects} /> */}
         <ProjectSection
           getType="client"
           getTitle="Client Projects"
+          getSubtitle="* Projects shown are displayed with persmission from the original owners"
           getData={clientProjects}
         />
         <ProjectSection
           getType="personal"
           getTitle="Personal Projects"
+          getSubtitle="* Some silly projects I do in my spare time"
           getData={personalProjects}
         />
         <SkillSection />

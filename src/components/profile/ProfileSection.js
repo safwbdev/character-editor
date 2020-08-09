@@ -106,7 +106,9 @@ const ProfileSection = ({ profile }) => {
         </Grid>
       </Container>
       <Grid container spacing={0} className="desc-section">
-        <Container maxWidth="lg">{profile ? getDesc(profile) : null}</Container>
+        <Container maxWidth="lg">
+          {profile ? getDesc(profile) : "Loading ..."}
+        </Container>
       </Grid>
     </div>
   );
