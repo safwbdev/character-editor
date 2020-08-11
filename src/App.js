@@ -12,8 +12,8 @@ import EditEducation from "./components/education/EditEducation";
 import EditProject from "./components/projects/EditProject";
 import EditProfile from "./components/profile/EditProfile";
 import CreateWork from "./components/work/CreateWork";
-import Navbar from "./components/layout/Navbar";
 import EditWork from "./components/work/EditWork";
+// import Navbar from "./components/layout/Navbar";
 
 class App extends Component {
   render() {

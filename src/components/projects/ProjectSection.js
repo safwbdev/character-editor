@@ -11,7 +11,7 @@ import {
   makeStyles,
   CardContent,
   Hidden,
-  IconButton,
+  // IconButton,
   //   Hidden,
 } from "@material-ui/core";
 import Slider from "react-slick";
@@ -45,6 +45,9 @@ const useStyles = makeStyles({
     width: "100%",
     color: "#ffffff",
     border: "1px solid #ffffff",
+  },
+  iconLink: {
+    padding: "5px",
   },
 });
 
@@ -139,9 +142,7 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
           <Typography gutterBottom variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography variant="body2" component="body2">
-            {desc}
-          </Typography>
+          <Typography variant="body2">{desc}</Typography>
         </CardContent>
         <CardActions className={classes.frameworks}>
           {skillType &&
@@ -161,9 +162,9 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
           {demo ? (
             <a href={demo} className={classes.widthFull}>
               <Button variant="outlined" className={classes.buttonLink}>
-                <IconButton className="icon-link">
-                  <LaunchIcon />
-                </IconButton>
+                {/* <IconButton className="icon-link"> */}
+                <LaunchIcon className={classes.iconLink} />
+                {/* </IconButton> */}
                 {getType === "personal" ? "Demo" : "Visit Site"}
               </Button>
             </a>
@@ -171,9 +172,9 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
           {github ? (
             <a href={github} className={classes.widthFull}>
               <Button variant="outlined" className={classes.buttonLink}>
-                <IconButton className="icon-link">
-                  <GitHubIcon />
-                </IconButton>
+                {/* <IconButton className="icon-link"> */}
+                <GitHubIcon className={classes.iconLink} />
+                {/* </IconButton> */}
                 Github
               </Button>
             </a>

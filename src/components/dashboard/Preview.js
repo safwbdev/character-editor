@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import SkillSection from "../skills/SkillSection";
 import EducationSection from "../education/EducationSection";
 import WorkSection from "../work/WorkSection";
@@ -9,34 +9,61 @@ import { firestoreConnect } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
-const Preview = ({ clientProjects, personalProjects }) => {
-  if (personalProjects) {
-    return (
-      <>
-        <ProfileSection />
-        <ProjectSection
-          getType="client"
-          getTitle="Client Projects"
-          getSubtitle="* Projects shown are displayed with persmission from the original owners"
-          getData={clientProjects}
-        />
-        <ProjectSection
-          getType="personal"
-          getTitle="Personal Projects"
-          getSubtitle="* Some silly projects I do in my spare time"
-          getData={personalProjects}
-        />
-        <SkillSection />
-        <WorkSection />
-        <EducationSection />
-      </>
-    );
-  } else {
-    return <h1>LOADING</h1>;
+class Preview extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clientProjects: null,
+      personalProjects: null,
+      loaded: false,
+    };
   }
-};
+  // const Preview = ({ clientProjects, personalProjects }) => {
+  // if (personalProjects) {
 
-// export default Preview;
+  componentWillReceiveProps({ clientProjects, personalProjects }) {
+    if (clientProjects) {
+      this.setState({
+        clientProjects: clientProjects,
+      });
+    }
+    if (personalProjects) {
+      this.setState({
+        personalProjects: personalProjects,
+        loaded: true,
+      });
+    }
+  }
+
+  render() {
+    const { clientProjects, personalProjects, loaded } = this.state;
+
+    if (loaded) {
+      return (
+        <>
+          <ProfileSection />
+          <ProjectSection
+            getType="client"
+            getTitle="Client Projects"
+            getSubtitle="* Projects shown are displayed with persmission from the original owners"
+            getData={clientProjects}
+          />
+          <ProjectSection
+            getType="personal"
+            getTitle="Personal Projects"
+            getSubtitle="* Some silly projects I do in my spare time"
+            getData={personalProjects}
+          />
+          <SkillSection />
+          <WorkSection />
+          <EducationSection />
+        </>
+      );
+    } else {
+      return <h1>LOADING</h1>;
+    }
+  }
+}
 
 const mapStateToProps = (state) => {
   const getProjects = state.firestore.ordered.projects;
