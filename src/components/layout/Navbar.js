@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Links from "./Links";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Container from "@material-ui/core/Container";
+import {
+  Hidden,
+  makeStyles,
+  AppBar,
+  Toolbar,
+  Container,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,16 +23,18 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   return (
-    <AppBar position="static">
-      <Container maxWidth="lg">
-        <Toolbar>
-          <Link to="/" className={classes.title}>
-            Character Editor
-          </Link>
-          <Links />
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <Hidden only="xs">
+      <AppBar position="static">
+        <Container maxWidth="lg">
+          <Toolbar>
+            <Link to="/" className={classes.title}>
+              Character Editor
+            </Link>
+            <Links />
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </Hidden>
   );
 };
 

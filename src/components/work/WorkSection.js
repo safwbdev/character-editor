@@ -20,7 +20,7 @@ import WorkDialog from "./WorkDialog";
 const WorkSection = (props) => {
   const { work } = props;
   const settings = {
-    dots: false,
+    dots: true,
     arrows: false,
     infinite: false,
     speed: 500,

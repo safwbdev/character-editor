@@ -12,8 +12,7 @@ import EditEducation from "./components/education/EditEducation";
 import EditProject from "./components/projects/EditProject";
 import EditProfile from "./components/profile/EditProfile";
 import CreateWork from "./components/work/CreateWork";
-// import Navbar from "./components/layout/Navbar";
-// import { Hidden } from "@material-ui/core";
+import Navbar from "./components/layout/Navbar";
 import EditWork from "./components/work/EditWork";
 
 class App extends Component {
@@ -21,9 +20,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          {/* <Hidden only="xs">
-            <Navbar />
-          </Hidden> */}
+          {/* <Navbar /> */}
           <Switch>
             <Route exact path="/" component={Preview} />
             <Route exact path="/list" component={Dashboard} />

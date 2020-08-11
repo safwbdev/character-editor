@@ -17,7 +17,7 @@ import "slick-carousel/slick/slick-theme.css";
 const EducationSection = (props) => {
   const { education } = props;
   const settings = {
-    dots: false,
+    dots: true,
     arrows: false,
     infinite: false,
     speed: 500,

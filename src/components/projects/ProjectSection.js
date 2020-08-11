@@ -11,23 +11,40 @@ import {
   makeStyles,
   CardContent,
   Hidden,
+  IconButton,
   //   Hidden,
 } from "@material-ui/core";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LaunchIcon from "@material-ui/icons/Launch";
+import GitHubIcon from "@material-ui/icons/GitHub";
 
 const useStyles = makeStyles({
   root: {
     maxWidth: "95%",
     maxHeight: "inherit",
     height: "inherit",
+    background: "#000000",
+    color: "#ffffff",
   },
   media: {
     height: 300,
+    backgroundPosition: "inherit",
   },
   frameworks: {
     display: "block",
+  },
+  widthFull: {
+    width: "100%",
+  },
+  widthHalf: {
+    width: "50%",
+  },
+  buttonLink: {
+    width: "100%",
+    color: "#ffffff",
+    border: "1px solid #ffffff",
   },
 });
 
@@ -110,6 +127,7 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
   const ProjectBox = ({ data }) => {
     const { image, title, desc, skillType, demo, github } = data;
     const classes = useStyles();
+
     return (
       <Card className={classes.root}>
         <CardMedia
@@ -121,7 +139,7 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
           <Typography gutterBottom variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" component="body2">
             {desc}
           </Typography>
         </CardContent>
@@ -141,15 +159,23 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
         </CardActions>
         <CardActions>
           {demo ? (
-            <a href={demo}>
-              <Button variant="contained">
+            <a href={demo} className={classes.widthFull}>
+              <Button variant="outlined" className={classes.buttonLink}>
+                <IconButton className="icon-link">
+                  <LaunchIcon />
+                </IconButton>
                 {getType === "personal" ? "Demo" : "Visit Site"}
               </Button>
             </a>
           ) : null}
           {github ? (
-            <a href={github}>
-              <Button variant="contained">Github</Button>
+            <a href={github} className={classes.widthFull}>
+              <Button variant="outlined" className={classes.buttonLink}>
+                <IconButton className="icon-link">
+                  <GitHubIcon />
+                </IconButton>
+                Github
+              </Button>
             </a>
           ) : null}
         </CardActions>

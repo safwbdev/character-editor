@@ -104,7 +104,6 @@ header a button span {
 .edu-box .MuiCard-root,
 .work-box .MuiCard-root {
   background: transparent;
-
   color: #ffffff;
 }
 .task-button {
@@ -113,7 +112,8 @@ header a button span {
   font-weight: 700 !important;
 }
 /* @media screen and (device-width: 360px) and (device-height: 640px) { */
-@media screen and (device-width: 360px) {
+/* @media screen and (device-width: 360px) { */
+@media only screen and (max-width: 480px) {
   .edu-box .MuiCard-root,
   .work-box .MuiCard-root {
     background: #000000;
@@ -136,8 +136,7 @@ header a button span {
   .slick-slide img {
     display: inline !important;
   }
-
-  .slick-track {
+  /* .slick-track {
     display: flex !important;
   }
 
@@ -147,8 +146,19 @@ header a button span {
   }
   .slick-slide > div {
     height: 100%;
-  }
+  } */
 }
+/* .slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: inherit !important;
+  width: 90% !important;
+}
+.slick-slide > div {
+  height: 100%;
+} */
 .full-width {
   width: 100% !important;
 }
@@ -438,4 +448,22 @@ header a button span {
     margin: 0 0 30px;
     width: 30%;
   }
+}
+.MuiDialog-paper {
+  background: #000000 !important;
+  color: #ffffff !important;
+  box-shadow: 0px 0px 10px #5a5a5a !important;
+}
+.slick-dots li button:before {
+  color: #ffffff !important;
+}
+.project-section a {
+  text-decoration: none;
+}
+.icon-link {
+  padding: 5px !important;
+}
+
+.icon-link svg {
+  color: #ffffff;
 }
