@@ -1,4 +1,5 @@
 import React from "react";
+import desc_image from "./../../assets/desc_bg.jpeg";
 import {
   Grid,
   Typography,
@@ -11,6 +12,8 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import EmailIcon from "@material-ui/icons/Email";
 import PhoneIcon from "@material-ui/icons/Phone";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
+
+var descbgStyle = { backgroundImage: `url(${desc_image})` };
 
 const ProfileSection = ({ data }) => {
   const getProfile = ({
@@ -112,7 +115,7 @@ const ProfileSection = ({ data }) => {
           {data ? getProfile(data) : null}
         </Grid>
       </Container>
-      <Grid container spacing={0} className="desc-section">
+      <Grid container spacing={0} className="desc-section" style={descbgStyle}>
         <Container maxWidth="lg">
           {data ? getDesc(data) : "Loading ..."}
         </Container>

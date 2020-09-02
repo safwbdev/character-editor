@@ -213,10 +213,7 @@ header a button span {
   text-decoration: none;
 }
 .desc-section {
-  background-image: url("https://safwbdev.netlify.app/static/media/desc_bg.25374c6a.jpeg");
-
   padding: 0;
-  /* background: red; */
   background-attachment: fixed;
   background-position: 50%;
   background-repeat: no-repeat;
@@ -238,7 +235,6 @@ header a button span {
     align-items: center;
   }
   .desc-section {
-    /* background: red; */
     position: absolute;
     bottom: 0;
     height: 40vh;
