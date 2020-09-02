@@ -2,17 +2,17 @@ import React, { Component } from "react";
 // import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Dashboard from "./components/dashboard/Dashboard";
+// import Dashboard from "./components/dashboard/Dashboard";
 import Preview from "./components/dashboard/Preview";
-import CreateProject from "./components/projects/CreateProject";
-import CreateSkill from "./components/skills/CreateSkill";
-import EditSkill from "./components/skills/EditSkill";
-import CreateEducation from "./components/education/CreateEducation";
-import EditEducation from "./components/education/EditEducation";
-import EditProject from "./components/projects/EditProject";
-import EditProfile from "./components/profile/EditProfile";
-import CreateWork from "./components/work/CreateWork";
-import EditWork from "./components/work/EditWork";
+// import CreateProject from "./components/projects/CreateProject";
+// import CreateSkill from "./components/skills/CreateSkill";
+// import EditSkill from "./components/skills/EditSkill";
+// import CreateEducation from "./components/education/CreateEducation";
+// import EditEducation from "./components/education/EditEducation";
+// import EditProject from "./components/projects/EditProject";
+// import EditProfile from "./components/profile/EditProfile";
+// import CreateWork from "./components/work/CreateWork";
+// import EditWork from "./components/work/EditWork";
 // import Navbar from "./components/layout/Navbar";
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
           {/* <Navbar /> */}
           <Switch>
             <Route exact path="/" component={Preview} />
-            <Route exact path="/list" component={Dashboard} />
+            {/* <Route exact path="/list" component={Dashboard} />
             <Route exact path="/create-project" component={CreateProject} />
             <Route exact path="/create-skill" component={CreateSkill} />
             <Route exact path="/edit-skill/:id" component={EditSkill} />
@@ -32,7 +32,7 @@ class App extends Component {
             <Route exact path="/edit-education/:id" component={EditEducation} />
             <Route exact path="/edit-project/:id" component={EditProject} />
             <Route exact path="/create-education" component={CreateEducation} />
-            <Route exact path="/create-work" component={CreateWork} />
+            <Route exact path="/create-work" component={CreateWork} /> */}
           </Switch>
         </div>
       </BrowserRouter>
