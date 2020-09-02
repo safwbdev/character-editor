@@ -4,7 +4,7 @@ import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import Dashboard from "./components/dashboard/Dashboard";
 import Preview from "./components/dashboard/Preview";
-import UC from "./components/dashboard/UC";
+// import UC from "./components/dashboard/UC";
 // import CreateProject from "./components/projects/CreateProject";
 // import CreateSkill from "./components/skills/CreateSkill";
 // import EditSkill from "./components/skills/EditSkill";
@@ -23,8 +23,8 @@ class App extends Component {
         <div className="App">
           {/* <Navbar /> */}
           <Switch>
-            <Route exact path="/" component={UC} />
-            <Route exact path="/preview" component={Preview} />
+            {/* <Route exact path="/" component={UC} /> */}
+            <Route exact path="/" component={Preview} />
             {/* <Route exact path="/list" component={Dashboard} /> */}
             {/* <Route exact path="/create-project" component={CreateProject} /> */}
             {/* <Route exact path="/create-skill" component={CreateSkill} /> */}
