@@ -1,13 +1,10 @@
 import React from "react";
 import Chip from "@material-ui/core/Chip";
-import { firestoreConnect } from "react-redux-firebase";
-import { connect } from "react-redux";
-import { compose } from "redux";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Container } from "@material-ui/core";
 
 const SkillSection = (props) => {
-  const { skills } = props;
+  const { data } = props;
   const skillArray = [
     { title: "Essentials", type: "essential" },
     { title: "Technical", type: "technical" },
@@ -26,8 +23,8 @@ const SkillSection = (props) => {
         <Typography variant="h5" component="h5">
           {title}
         </Typography>
-        {skills &&
-          skills.map((data, index) => {
+        {data &&
+          data.map((data, index) => {
             const content = (
               <span>
                 <i className={data.icon}></i> <>{data.name}</>
@@ -74,12 +71,4 @@ const SkillSection = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    skills: state.firestore.ordered.skills,
-  };
-};
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: "skills", orderBy: ["name", "asc"] }])
-)(SkillSection);
+export default SkillSection;

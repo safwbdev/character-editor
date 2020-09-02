@@ -1,7 +1,4 @@
 import React from "react";
-import { firestoreConnect } from "react-redux-firebase";
-import { connect } from "react-redux";
-import { compose } from "redux";
 import {
   Grid,
   Container,
@@ -15,7 +12,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const EducationSection = (props) => {
-  const { education } = props;
+  const { data } = props;
   const settings = {
     dots: true,
     arrows: false,
@@ -85,25 +82,17 @@ const EducationSection = (props) => {
       <Hidden only="xs">
         <Container maxWidth="lg">
           <Grid container spacing={0} className="edu-slider">
-            {EducationList(education)}
+            {EducationList(data)}
           </Grid>
         </Container>
       </Hidden>
       <Hidden smUp>
         <Grid container spacing={0} className="edu-slider">
-          {EducationSlider(education)}
+          {EducationSlider(data)}
         </Grid>
       </Hidden>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    education: state.firestore.ordered.education,
-  };
-};
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: "education", orderBy: ["endYear", "desc"] }])
-)(EducationSection);
+export default EducationSection;

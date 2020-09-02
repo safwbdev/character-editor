@@ -460,3 +460,25 @@ header a button span {
 .project-section a {
   text-decoration: none;
 }
+.comingsoon,
+.loadscreen {
+  background-image: linear-gradient(to top, #0e1025 0%, #373447 100%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadscreen svg {
+  color: #ffffff;
+}
+.loadscreen h2 {
+  margin-left: 0.5em;
+}
+.comingsoon .title {
+  display: block;
+}
+
+.comingsoon .title h1,
+.comingsoon .title h3 {
+  text-align: center;
+}

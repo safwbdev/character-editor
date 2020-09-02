@@ -1,7 +1,4 @@
 import React from "react";
-import { firestoreConnect } from "react-redux-firebase";
-import { connect } from "react-redux";
-import { compose } from "redux";
 import {
   Grid,
   Typography,
@@ -15,7 +12,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import PhoneIcon from "@material-ui/icons/Phone";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 
-const ProfileSection = ({ profile }) => {
+const ProfileSection = ({ data }) => {
   const getProfile = ({
     email,
     github,
@@ -112,27 +109,16 @@ const ProfileSection = ({ profile }) => {
     <div className="intro-section">
       <Container maxWidth="lg" className="profile-row">
         <Grid container spacing={0}>
-          {profile ? getProfile(profile) : null}
+          {data ? getProfile(data) : null}
         </Grid>
       </Container>
       <Grid container spacing={0} className="desc-section">
         <Container maxWidth="lg">
-          {profile ? getDesc(profile) : "Loading ..."}
+          {data ? getDesc(data) : "Loading ..."}
         </Container>
       </Grid>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  const getProfile = state.firestore.data.profile;
-  const id = "main";
-  const profile = getProfile ? getProfile[id] : null;
-  return {
-    profile: profile,
-  };
-};
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: "profile" }])
-)(ProfileSection);
+export default ProfileSection;

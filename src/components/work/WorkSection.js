@@ -1,13 +1,9 @@
 import React from "react";
-import { firestoreConnect } from "react-redux-firebase";
-import { connect } from "react-redux";
-import { compose } from "redux";
 import {
   Grid,
   Typography,
   Card,
   CardContent,
-  // Avatar,
   Hidden,
   Container,
 } from "@material-ui/core";
@@ -18,7 +14,7 @@ import moment from "moment";
 import WorkDialog from "./WorkDialog";
 
 const WorkSection = (props) => {
-  const { work } = props;
+  const { data } = props;
   const settings = {
     dots: true,
     arrows: false,
@@ -116,26 +112,18 @@ const WorkSection = (props) => {
       <Hidden only="xs">
         <Container maxWidth="lg">
           <Grid container spacing={0} className="work-slider">
-            {WorkList(work)}
+            {WorkList(data)}
           </Grid>
         </Container>
       </Hidden>
 
       <Hidden smUp>
         <Grid container spacing={0} className="work-slider">
-          {WorkSlider(work)}
+          {WorkSlider(data)}
         </Grid>
       </Hidden>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    work: state.firestore.ordered.work,
-  };
-};
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([{ collection: "work", orderBy: ["startDate", "desc"] }])
-)(WorkSection);
+export default WorkSection;
