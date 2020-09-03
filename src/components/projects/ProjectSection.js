@@ -160,7 +160,12 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
         </CardActions>
         <CardActions>
           {demo ? (
-            <a href={demo} className={classes.widthFull}>
+            <a
+              href={demo}
+              className={classes.widthFull}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="outlined" className={classes.buttonLink}>
                 {/* <IconButton className="icon-link"> */}
                 <LaunchIcon className={classes.iconLink} />
@@ -170,7 +175,12 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
             </a>
           ) : null}
           {github ? (
-            <a href={github} className={classes.widthFull}>
+            <a
+              href={github}
+              className={classes.widthFull}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="outlined" className={classes.buttonLink}>
                 {/* <IconButton className="icon-link"> */}
                 <GitHubIcon className={classes.iconLink} />
