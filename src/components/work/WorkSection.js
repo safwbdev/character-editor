@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Typography,
@@ -12,8 +12,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import moment from "moment";
 import WorkDialog from "./WorkDialog";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const WorkSection = (props) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   const { data } = props;
   const settings = {
     dots: true,
@@ -103,7 +114,16 @@ const WorkSection = (props) => {
   };
 
   return (
-    <div className="work-section">
+    <motion.div
+      className="work-section"
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 300 },
+      }}
+    >
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
           Work History
@@ -122,7 +142,7 @@ const WorkSection = (props) => {
           {WorkSlider(data)}
         </Grid>
       </Hidden>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Container,
@@ -10,8 +10,18 @@ import {
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const EducationSection = (props) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
   const { data } = props;
   const settings = {
     dots: true,
@@ -73,7 +83,16 @@ const EducationSection = (props) => {
   };
 
   return (
-    <div className="education-section">
+    <motion.div
+      className="education-section"
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 300 },
+      }}
+    >
       <Grid item xs={12} className="skill-box">
         <Typography variant="h4" component="h4">
           Education
@@ -91,7 +110,7 @@ const EducationSection = (props) => {
           {EducationSlider(data)}
         </Grid>
       </Hidden>
-    </div>
+    </motion.div>
   );
 };
 

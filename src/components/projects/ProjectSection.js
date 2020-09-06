@@ -216,44 +216,43 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
   };
 
   return (
-    <div className="project-section">
-      <motion.div
-        ref={ref}
-        animate={controls}
-        initial="hidden"
-        variants={{
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 300 },
-        }}
-      >
-        <Grid item xs={12} className="skill-box">
-          <Typography variant="h4" component="h4">
-            {getTitle}{" "}
-            {getType === "personal" ? "(" + getData.length + ")" : null}
-          </Typography>
-        </Grid>
-        <Hidden only="xs">
-          <Container maxWidth="lg">
-            <Grid container spacing={0} className="project-slider">
-              {ProjectSlider(getData)}
-            </Grid>
-          </Container>
-        </Hidden>
-        <Hidden smUp>
+    <motion.div
+      className="project-section"
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 300 },
+      }}
+    >
+      <Grid item xs={12} className="skill-box">
+        <Typography variant="h4" component="h4">
+          {getTitle}{" "}
+          {getType === "personal" ? "(" + getData.length + ")" : null}
+        </Typography>
+      </Grid>
+      <Hidden only="xs">
+        <Container maxWidth="lg">
           <Grid container spacing={0} className="project-slider">
             {ProjectSlider(getData)}
           </Grid>
-        </Hidden>
-        <Grid container>
-          <Grid item xs={12} />
-          <br />
-          <br />
-          <Grid item xs={12} align="center">
-            <Typography variant="body2">{getSubtitle}</Typography>
-          </Grid>
+        </Container>
+      </Hidden>
+      <Hidden smUp>
+        <Grid container spacing={0} className="project-slider">
+          {ProjectSlider(getData)}
         </Grid>
-      </motion.div>
-    </div>
+      </Hidden>
+      <Grid container>
+        <Grid item xs={12} />
+        <br />
+        <br />
+        <Grid item xs={12} align="center">
+          <Typography variant="body2">{getSubtitle}</Typography>
+        </Grid>
+      </Grid>
+    </motion.div>
   );
 };
 
