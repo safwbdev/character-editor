@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Grid,
   Container,
@@ -19,6 +19,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LaunchIcon from "@material-ui/icons/Launch";
 import GitHubIcon from "@material-ui/icons/GitHub";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const useStyles = makeStyles({
   root: {
@@ -52,6 +54,15 @@ const useStyles = makeStyles({
 });
 
 const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   let settings;
   const personalSettings = {
     dots: true,
@@ -206,32 +217,42 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
 
   return (
     <div className="project-section">
-      <Grid item xs={12} className="skill-box">
-        <Typography variant="h4" component="h4">
-          {getTitle}{" "}
-          {getType === "personal" ? "(" + getData.length + ")" : null}
-        </Typography>
-      </Grid>
-      <Hidden only="xs">
-        <Container maxWidth="lg">
+      <motion.div
+        ref={ref}
+        animate={controls}
+        initial="hidden"
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 300 },
+        }}
+      >
+        <Grid item xs={12} className="skill-box">
+          <Typography variant="h4" component="h4">
+            {getTitle}{" "}
+            {getType === "personal" ? "(" + getData.length + ")" : null}
+          </Typography>
+        </Grid>
+        <Hidden only="xs">
+          <Container maxWidth="lg">
+            <Grid container spacing={0} className="project-slider">
+              {ProjectSlider(getData)}
+            </Grid>
+          </Container>
+        </Hidden>
+        <Hidden smUp>
           <Grid container spacing={0} className="project-slider">
             {ProjectSlider(getData)}
           </Grid>
-        </Container>
-      </Hidden>
-      <Hidden smUp>
-        <Grid container spacing={0} className="project-slider">
-          {ProjectSlider(getData)}
+        </Hidden>
+        <Grid container>
+          <Grid item xs={12} />
+          <br />
+          <br />
+          <Grid item xs={12} align="center">
+            <Typography variant="body2">{getSubtitle}</Typography>
+          </Grid>
         </Grid>
-      </Hidden>
-      <Grid container>
-        <Grid item xs={12} />
-        <br />
-        <br />
-        <Grid item xs={12} align="center">
-          <Typography variant="body2">{getSubtitle}</Typography>
-        </Grid>
-      </Grid>
+      </motion.div>
     </div>
   );
 };
