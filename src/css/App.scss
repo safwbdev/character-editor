@@ -1,0 +1,450 @@
+body {
+  background: #302e30;
+  color: #ffffff;
+}
+.full-width {
+  width: 100% !important;
+}
+.imageInput {
+  display: none;
+  &-label {
+    cursor: pointer;
+    background: #e0e0e0;
+    text-transform: uppercase;
+    padding: 0.8em;
+    font-size: 0.9em;
+    border-radius: 2px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    width: 100% !important;
+  }
+}
+.skill-box {
+  text-align: center;
+  padding: 1.5em 0;
+  h5 {
+    margin-bottom: 0.7em;
+  }
+  .MuiChip-root {
+    margin: 0.5em;
+    // &.essential {
+    // }
+    &.technical {
+      background-color: #c5cae9 !important;
+    }
+    &.framework {
+      background-color: #90caf9 !important;
+    }
+    &.library {
+      background-color: #cddc39 !important;
+    }
+    &.database {
+      background-color: #ffeb3b !important;
+    }
+    &.cms {
+      background-color: #ffb74d !important;
+    }
+    &.os {
+      background-color: #e57373 !important;
+    }
+    &.tools {
+      background-color: #e1bee7 !important;
+    }
+    &.design {
+      background-color: #ce93d8 !important;
+    }
+  }
+}
+
+.block {
+  display: block !important;
+}
+.MuiPaper-elevation1 {
+  box-shadow: none !important;
+}
+.task-button {
+  border: 1px solid #ffffff !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.edu,
+.work {
+  &-img {
+    width: 4em !important;
+    height: 4em !important;
+    margin-right: 1em;
+    border-radius: 50%;
+    box-shadow: 1px 1px 6px grey;
+  }
+  &-content {
+    display: flex !important;
+    /* align-items: center; */
+  }
+  &-box {
+    .MuiCard-root {
+      background: transparent;
+      color: #ffffff;
+    }
+  }
+}
+
+.skill,
+.work,
+.education {
+  &-section {
+    padding: 2em 0;
+  }
+}
+.work-section {
+  padding: 0;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .company {
+    font-weight: bold !important;
+  }
+  .desc-list {
+    padding-inline-start: 1em;
+    line-height: 1.5em;
+  }
+}
+
+/* @media screen and (device-width: 360px) and (device-height: 640px) { */
+/* @media screen and (device-width: 360px) { */
+
+// MOBILE
+@media only screen and (max-width: 480px) {
+  .edu-box,
+  .work-box {
+    .MuiCard-root {
+      background: #000000;
+      width: 95%;
+    }
+  }
+  .edu,
+  .work {
+    &-content {
+      display: block !important;
+      text-align: center !important;
+    }
+    &-img {
+      margin: unset !important;
+      text-align: center !important;
+      width: 50% !important;
+      height: unset !important;
+      margin-bottom: 10px !important;
+    }
+  }
+}
+
+.project-slider,
+.edu-slider,
+.work-slider {
+  .slick-slider {
+    width: 100%;
+    .slick-slide {
+      img {
+        display: inline !important;
+      }
+    }
+  }
+}
+
+.intro-section {
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    from(#0e1025),
+    to(#373447)
+  );
+  background-image: linear-gradient(0deg, #0e1025 0, #373447);
+  color: #ffffff;
+  svg {
+    color: #ffffff;
+  }
+  .profile-row {
+    img {
+      border-radius: 50%;
+      width: 90%;
+      box-shadow: 1px 2px 1px grey;
+    }
+    .detail-links {
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+}
+.desc-section {
+  padding: 0;
+  background-attachment: fixed;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  h6 {
+    color: #ffffff;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 11px 1px 6px #000;
+  }
+}
+.project-section {
+  a {
+    text-decoration: none;
+  }
+}
+// DESKTOP
+@media only screen and (min-width: 1201px) {
+  .intro-section {
+    height: 100vh;
+    .profile-row {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+    }
+    .desc-section {
+      position: absolute;
+      bottom: 0;
+      height: 40vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.intro-section {
+  .profile-row {
+    .titles {
+      margin-bottom: 2em;
+      h2 {
+        font-weight: 700;
+      }
+      h3 {
+        font-style: italic;
+      }
+    }
+  }
+}
+@media screen and (device-width: 480px) and (device-height: 640px) {
+  .intro-section {
+    .profile-row {
+      text-align: center;
+      padding-top: 2em;
+      height: 100vh;
+      .titles {
+        margin: 2em 0;
+        h2 {
+          margin-bottom: 0.6em;
+          font-size: 1.9rem !important;
+        }
+        h3 {
+          font-size: 1.7rem !important;
+        }
+      }
+      .link-btn {
+        background: #ffffff;
+        svg {
+          color: #373447;
+        }
+      }
+      .location {
+        margin-top: 2em;
+      }
+      img {
+        margin: 30px 0 0;
+        width: 60%;
+      }
+    }
+    .desc-section {
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+  }
+
+  .slick-slide {
+    margin: 0 10px;
+    background: #000000;
+    /* border-radius: 20px; */
+  }
+  .project-slider .slick-slide {
+    margin: 0;
+    background: transparent;
+  }
+  .task-dialogbox {
+    .MuiDialog-paper {
+      border: 1px solid #ffffff;
+      background: #000000;
+      color: #ffffff;
+    }
+  }
+  .task-dialogbox {
+    .MuiDialog-paper {
+      .MuiDialogTitle-root {
+        h2 {
+          /* border-bottom: 1px solid #ffffff; */
+          font-weight: 700 !important;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .project-section {
+    .MuiContainer-root {
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .intro-section {
+    .profile-row {
+      height: 100vh;
+      text-align: center;
+      padding-top: 2em;
+      .titles {
+        margin: 2em 0;
+        h2 {
+          margin-bottom: 0.6em;
+          font-size: 1.9rem !important;
+        }
+        h3 {
+          font-size: 1.7rem !important;
+        }
+      }
+      .link-btn {
+        background: #ffffff;
+        svg {
+          color: #373447;
+        }
+      }
+      .location {
+        margin-top: 2em;
+      }
+      img {
+        margin: 30px 0 0;
+        width: 60%;
+      }
+    }
+    .desc-section {
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+  }
+  .work,
+  .edu {
+    &-slider.MuiGrid-container {
+      padding: 0 0 0 15px;
+    }
+  }
+  .project-section {
+    .project-slider {
+      padding: 0 0 0 15px;
+    }
+  }
+}
+
+// IPAD LANDSCAPE
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .intro-section {
+    height: 100vh;
+    .profile-row {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      .titles {
+        // border: 1px solid blue !important;
+      }
+      .profile-image {
+        text-align: center;
+        img {
+          margin: 0 0 30px;
+          width: 90%;
+        }
+      }
+    }
+    .desc-section {
+      position: absolute;
+      bottom: 0;
+      height: 40vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+// IPAD PORTRAIT
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .intro-section {
+    height: 100vh;
+    .profile-row {
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      .titles {
+        // border: 1px solid red !important;
+        text-align: center;
+      }
+      .profile-image {
+        text-align: center;
+        img {
+          margin: 0 0 30px;
+          width: 30%;
+        }
+      }
+    }
+    .desc-section {
+      position: absolute;
+      bottom: 0;
+      height: 40vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.MuiDialog-paper {
+  background: #000000 !important;
+  color: #ffffff !important;
+  box-shadow: 0px 0px 10px #5a5a5a !important;
+}
+.slick-dots {
+  li {
+    button {
+      &:before {
+        color: #ffffff !important;
+      }
+    }
+  }
+}
+
+.comingsoon,
+.loadscreen {
+  background-image: linear-gradient(to top, #0e1025 0%, #373447 100%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loadscreen {
+  svg {
+    color: #ffffff;
+  }
+  h2 {
+    margin-left: 0.5em;
+  }
+}
+.comingsoon {
+  .title {
+    display: block;
+    h1,
+    h3 {
+      text-align: center;
+    }
+  }
+}

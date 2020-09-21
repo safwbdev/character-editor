@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import logo from "./logo.svg";
-import "./App.css";
+import "./css/App.scss";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 // import Dashboard from "./components/dashboard/Dashboard";
 import Preview from "./components/dashboard/Preview";
