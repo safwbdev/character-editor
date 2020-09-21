@@ -351,7 +351,8 @@ body {
 }
 
 // IPAD LANDSCAPE
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+// @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+@media (max-device-width: 1280px) and (orientation: landscape) {
   .intro-section {
     height: 100vh;
     .profile-row {
@@ -380,7 +381,8 @@ body {
 }
 
 // IPAD PORTRAIT
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+@media only screen and (min-device-width: 800px) and (max-device-width: 1024px) and (orientation: portrait) {
+  // @media (max-device-width: 800px) and (orientation: portrait) {
   .intro-section {
     height: 100vh;
     .profile-row {

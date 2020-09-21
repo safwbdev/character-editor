@@ -80,6 +80,14 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
           dots: true,
         },
       },
+
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
       {
         breakpoint: 600,
         settings: {
@@ -111,6 +119,13 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
           slidesToScroll: 3,
           infinite: true,
           dots: true,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
         },
       },
       {
@@ -227,10 +242,20 @@ const ProjectSection = ({ getData, getType, getTitle, getSubtitle }) => {
       }}
     >
       <Grid item xs={12} className="skill-box">
-        <Typography variant="h4" component="h4">
-          {getTitle}{" "}
-          {getType === "personal" ? "(" + getData.length + ")" : null}
-        </Typography>
+        <motion.div
+          ref={ref}
+          animate={controls}
+          initial="hidden"
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 300 },
+          }}
+        >
+          <Typography variant="h4" component="h4">
+            {getTitle}{" "}
+            {getType === "personal" ? "(" + getData.length + ")" : null}
+          </Typography>
+        </motion.div>
       </Grid>
       <Hidden only="xs">
         <Container maxWidth="lg">
