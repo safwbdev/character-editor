@@ -120,7 +120,7 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([
     { collection: "profile" },
-    { collection: "projects" },
+    { collection: "projects", orderBy: ["order", "asc"] },
     { collection: "education", orderBy: ["endYear", "desc"] },
     { collection: "work", orderBy: ["startDate", "desc"] },
     { collection: "skills", orderBy: ["name", "asc"] },

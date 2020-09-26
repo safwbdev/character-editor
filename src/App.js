@@ -12,7 +12,7 @@ import Preview from "./components/dashboard/Preview";
 // import EditEducation from "./components/education/EditEducation";
 // import EditProject from "./components/projects/EditProject";
 // import EditProfile from "./components/profile/EditProfile";
-import CreateWork from "./components/work/CreateWork";
+// import CreateWork from "./components/work/CreateWork";
 // import EditWork from "./components/work/EditWork";
 // import Navbar from "./components/layout/Navbar";
 
@@ -34,7 +34,7 @@ class App extends Component {
             {/* <Route exact path="/edit-education/:id" component={EditEducation} /> */}
             {/* <Route exact path="/edit-project/:id" component={EditProject} /> */}
             {/* <Route exact path="/create-education" component={CreateEducation} /> */}
-            <Route exact path="/create-work" component={CreateWork} />
+            {/* <Route exact path="/create-work" component={CreateWork} /> */}
           </Switch>
         </div>
       </BrowserRouter>
