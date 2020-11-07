@@ -52,6 +52,7 @@ const WorkSection = (props) => {
       role,
       desc,
     } = data;
+    let currentStatus = endDate ? getWorkDate(endDate) : "Current";
     return (
       <div className="work-box">
         <Card>
@@ -66,7 +67,7 @@ const WorkSection = (props) => {
                 {name}
               </Typography>
               <Typography variant="subtitle1" className="">
-                {getWorkDate(startDate)} - {getWorkDate(endDate)}
+                {getWorkDate(startDate)} - {currentStatus}
               </Typography>
               <Typography variant="subtitle2">{location}</Typography>
               <Hidden only="xs">

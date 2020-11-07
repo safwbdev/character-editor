@@ -15,6 +15,7 @@ export const createProject = (data) => {
         skillType: data.skillType,
         title: data.title,
         createdAt: new Date(),
+        order: 0,
       })
       .then(() => {
         dispatch({ type: "CREATE_PROJECT", data });
